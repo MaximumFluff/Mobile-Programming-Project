@@ -19,8 +19,11 @@ export default class Home extends React.Component {
                     <Title>Home</Title>
                 </Body>
             </Header>
-            <Text>This is my home screen!</Text>
+            <Image source={require("./cover.png")} style={{width: width, height: height + 20}} />
         </Container>
     );
   }
 }
+
+const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;

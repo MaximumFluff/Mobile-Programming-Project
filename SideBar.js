@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, AppRegistry } from "react-native";
-import { Content, List, ListItem, Left, Icon, Body } from "native-base";
+import { Content, List, ListItem, Left, Icon, Body, Thumbnail } from "native-base";
 import DiceRoller from './DiceRoller';
 import Home from './Home'
 import { DrawerNavigator } from 'react-navigation';
@@ -19,6 +19,9 @@ export default class SideBar extends React.Component {
             button
             onPress={() => this.props.navigation.navigate(data)}
             >
+            <Left>
+            <Thumbnail source={require("./d20icon.png")} style={{height: 30, width: 30}}/>
+            </Left>
             <Text>{data}</Text>
           </ListItem>
         );
