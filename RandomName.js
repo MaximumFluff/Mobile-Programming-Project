@@ -21,7 +21,7 @@ import {
   Thumbnail,
   Drawer,
   Grid,
-  Col
+  Row
 } from "native-base";
 import { Asset, AppLoading } from "expo";
 import { SideBar } from "./SideBar";
@@ -60,7 +60,7 @@ export default class RandomName extends React.Component {
             </Button>
           </Left>
           <Body>
-            <Title>Random Name Generator</Title>
+            <Title style={{fontSize: 13}}>Random Name Generator</Title>
           </Body>
           <Right>
             <Button
@@ -71,10 +71,17 @@ export default class RandomName extends React.Component {
           </Right>
         </Header>
         <Content contentContainerStyle={{ flex: 1 }} style={{ padding: 10 }}>
-          <Grid style={{ alignItems: "center" }}>
+          <Grid>
+            <Row size={75}>
             <Card>
-              <Col>
-                <CardItem>
+                <CardItem cardBody>
+                  <H1 style={{ flex: 1, textAlign: 'center', fontSize: 30, marginTop: 50}}>
+                    {this.state.randomName}
+                  </H1>
+                </CardItem>
+                </Card>
+              </Row>
+              <Row size={25}>
                   <Button
                     style={{ flex: 1 }}
                     full
@@ -83,16 +90,7 @@ export default class RandomName extends React.Component {
                     title="Something">
                     <Title>Generate name</Title>
                   </Button>
-                </CardItem>
-              </Col>
-              <Col>
-                <CardItem cardBody>
-                  <H1 style={{ flex: 1, textAlign: 'center', fontSize: 30}}>
-                    {this.state.randomName}
-                  </H1>
-                </CardItem>
-              </Col>
-            </Card>
+              </Row>
           </Grid>
         </Content>
       </Container>
