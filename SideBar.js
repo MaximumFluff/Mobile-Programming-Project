@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { StyleSheet, Text, AppRegistry } from "react-native";
 import { Content, List, ListItem, Left, Icon, Body, Thumbnail } from "native-base";
 import DiceRoller from './DiceRoller';
-import Home from './Home'
+import Home from './Home';
+import RandomName from './RandomName';
 import { DrawerNavigator } from 'react-navigation';
-const routes = ["Home", "DiceRoller"];
+const routes = ["Home", "DiceRoller", "RandomName"];
 
 export default class SideBar extends React.Component {
   render() {
