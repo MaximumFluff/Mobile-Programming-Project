@@ -101,13 +101,12 @@ export default class RandomName extends React.Component {
   }
 
   generateName = () => {
-    let length = this.state.firstname.length;
-    let firstIndex = Math.floor(Math.random() * length);
-    let secondIndex = Math.floor(Math.random() * length);
-    let lastIndex = Math.floor(Math.random() * length);
+    let firstIndex = Math.floor(Math.random() * 19);
+    let secondIndex = Math.floor(Math.random() * 19);
+    let lastIndex = Math.floor(Math.random() * 19);
+    // console.warn(firstIndex, secondIndex, lastIndex);
     this.setState({
-      randomName:
-        `${this.state.firstSection[firstIndex]}${this.state.secondSection[secondIndex]}${this.state.lastSection[lastIndex]}`
+      randomName: `${this.state.firstSection[firstIndex]}${this.state.firstSection[firstIndex] === "" ? this.state.secondSection[secondIndex].charAt(0).toUpperCase() : this.state.secondSection[secondIndex]}${this.state.lastSection[lastIndex]}`
     });
   };
 
