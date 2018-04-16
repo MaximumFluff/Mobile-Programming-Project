@@ -112,7 +112,7 @@ export default class RandomName extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container style={{backgroundColor: 'gray'}}>
         <Header style={{ paddingTop: 30, paddingBottom: 20, height: 73 }}>
           <Left>
             <Button
@@ -132,17 +132,18 @@ export default class RandomName extends React.Component {
             </Button>
           </Right>
         </Header>
-        <Content contentContainerStyle={{ flex: 1 }} style={{ padding: 10 }}>
+        <Content contentContainerStyle={{ flex: 1 }} style={{ padding: 10}}>
           <Grid>
             <Row size={75}>
-              <Card>
-                <CardItem cardBody>
+              <Card style={{backgroundColor: 'gray'}}>
+                <CardItem cardBody style={{backgroundColor: 'gray'}}>
                   <H1
                     style={{
                       flex: 1,
                       textAlign: "center",
-                      fontSize: 30,
-                      marginTop: 50
+                      fontSize: 40,
+                      marginTop: 100,
+                      paddingTop: 100
                     }}>
                     {this.state.randomName}
                   </H1>
@@ -151,7 +152,7 @@ export default class RandomName extends React.Component {
             </Row>
             <Row size={25}>
               <Button
-                style={{ flex: 1 }}
+                style={{ flex: 1, backgroundColor: 'black' }}
                 full
                 info
                 onPress={this.generateName}
