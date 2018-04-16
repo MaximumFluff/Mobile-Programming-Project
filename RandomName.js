@@ -30,8 +30,72 @@ export default class RandomName extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: ["Mick", "Bob", "Dave", "Susan", "Cindy"],
-      lastname: ["Johnson", "Jameson", "Clark", "Musk", "Jacob"],
+      firstSection: [
+        "",
+        "",
+        "",
+        "",
+        "A",
+        "Be",
+        "De",
+        "El",
+        "Fa",
+        "Jo",
+        "Ki",
+        "La",
+        "Ma",
+        "Na",
+        "O",
+        "Pa",
+        "Re",
+        "Si",
+        "Ta",
+        "Va"
+      ],
+      secondSection: [
+        "bar",
+        "ched",
+        "dell",
+        "far",
+        "gran",
+        "hal",
+        "jen",
+        "kel",
+        "lim",
+        "mor",
+        "net",
+        "penn",
+        "quil",
+        "rond",
+        "sark",
+        "shen",
+        "tur",
+        "vash",
+        "yor",
+        "zen"
+      ],
+      lastSection: [
+        "",
+        "a",
+        "ac",
+        "ai",
+        "al",
+        "am",
+        "an",
+        "ar",
+        "ea",
+        "el",
+        "er",
+        "ess",
+        "ett",
+        "ic",
+        "id",
+        "il",
+        "in",
+        "is",
+        "or",
+        "us"
+      ],
       randomName: ""
     };
   }
@@ -40,11 +104,10 @@ export default class RandomName extends React.Component {
     let length = this.state.firstname.length;
     let firstIndex = Math.floor(Math.random() * length);
     let secondIndex = Math.floor(Math.random() * length);
+    let lastIndex = Math.floor(Math.random() * length);
     this.setState({
       randomName:
-        this.state.firstname[firstIndex] +
-        " " +
-        this.state.lastname[secondIndex]
+        `${this.state.firstSection[firstIndex]}${this.state.secondSection[secondIndex]}${this.state.lastSection[lastIndex]}`
     });
   };
 
@@ -60,7 +123,7 @@ export default class RandomName extends React.Component {
             </Button>
           </Left>
           <Body>
-            <Title style={{fontSize: 13}}>Random Name Generator</Title>
+            <Title style={{ fontSize: 13 }}>Random Name Generator</Title>
           </Body>
           <Right>
             <Button
@@ -73,24 +136,30 @@ export default class RandomName extends React.Component {
         <Content contentContainerStyle={{ flex: 1 }} style={{ padding: 10 }}>
           <Grid>
             <Row size={75}>
-            <Card>
+              <Card>
                 <CardItem cardBody>
-                  <H1 style={{ flex: 1, textAlign: 'center', fontSize: 30, marginTop: 50}}>
+                  <H1
+                    style={{
+                      flex: 1,
+                      textAlign: "center",
+                      fontSize: 30,
+                      marginTop: 50
+                    }}>
                     {this.state.randomName}
                   </H1>
                 </CardItem>
-                </Card>
-              </Row>
-              <Row size={25}>
-                  <Button
-                    style={{ flex: 1 }}
-                    full
-                    info
-                    onPress={this.generateName}
-                    title="Something">
-                    <Title>Generate name</Title>
-                  </Button>
-              </Row>
+              </Card>
+            </Row>
+            <Row size={25}>
+              <Button
+                style={{ flex: 1 }}
+                full
+                info
+                onPress={this.generateName}
+                title="Something">
+                <Title>Generate name</Title>
+              </Button>
+            </Row>
           </Grid>
         </Content>
       </Container>
