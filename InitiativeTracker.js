@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, ScrollView, TextInput, StyleSheet } from "react-native";
+import { ScrollView, TextInput, StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -19,15 +19,41 @@ import {
   Thumbnail,
   Drawer,
   Grid,
-  Row
+  Row,
+  Text
 } from "native-base";
 
 export default class InitiativeTracker extends Component {
   constructor(props) {
     super(props);
-    this.state = { creatures: [], current: "" };
+    this.state = { creatures: [], name: "", ac: "", hp: "", initiative: "" };
   }
+
+  addPlayer = () => {
+    const newPlayer = {
+      name: this.state.name,
+      hp: this.state.hp,
+      ac: this.state.ac,
+      initiative: this.state.initiative
+    }
+    this.setState({
+      creatures: [...this.state.creatures, newPlayer]
+    })
+    console.warn(this.state.creatures)
+  }
+
   render() {
+    const rows = this.state.creatures.map((item) => (
+      <Card>
+        <CardItem>
+          <Text>{item.name} </Text>
+          <Text>HP: {item.hp} </Text>
+          <Text>AC : {item.ac} </Text>
+          <Text>Initiative: {item.initiative} </Text>
+        </CardItem>
+      </Card>
+    ))
+
     return (
       <Container>
         <Header style={{ paddingTop: 30, paddingBottom: 20, height: 73 }}>
@@ -51,17 +77,44 @@ export default class InitiativeTracker extends Component {
         </Header>
         <Content contentContainerStyle={{ flex: 1 }} style={{ padding: 10 }}>
           <Grid>
-            <Row>
-              <Button full info title="Press">
-                <Text>Press me!</Text>
-              </Button>
-            </Row>
-            <Row>
+            <Row style={{ height: 50 }}>
               <TextInput
-                onChangeText={(current) => this.setState({ current })}
-                value={this.state.current}
-                style={{height: 40, borderColor: 'black', borderWidth: 1, width: 100}}
+                onChangeText={(name) => this.setState({ name })}
+                value={this.state.name}
+                placeholder=" Name"
+                style={{ height: 40, borderColor: 'black', borderWidth: 1, width: 100, flex: 1 }}
               />
+              <TextInput
+                onChangeText={(hp) => this.setState({ hp })}
+                value={this.state.hp}
+                placeholder=" HP"
+                style={{ height: 40, borderColor: 'black', borderWidth: 1, width: 100, flex: 1 }}
+              />
+              <TextInput
+                onChangeText={(ac) => this.setState({ ac })}
+                value={this.state.ac}
+                placeholder=" AC"
+                style={{ height: 40, borderColor: 'black', borderWidth: 1, width: 100, flex: 1 }}
+              />
+              <TextInput
+                onChangeText={(initiative) => this.setState({ initiative })}
+                value={this.state.initiative}
+                placeholder=" Initiative"
+                style={{ height: 40, borderColor: 'black', borderWidth: 1, width: 100, flex: 1 }}
+              />
+
+            </Row>
+            <Row style={{ height: 50 }}>
+              <Button
+                full
+                info
+                onPress={this.addPlayer}
+                style={{ flex: 1 }}><Text>Add player</Text></Button>
+            </Row>
+            <Row style={{ height: 500 }}>
+              <ScrollView>
+                {rows}
+              </ScrollView>
             </Row>
           </Grid>
         </Content>
