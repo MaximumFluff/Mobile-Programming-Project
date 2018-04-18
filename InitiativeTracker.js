@@ -55,18 +55,32 @@ export default class InitiativeTracker extends Component {
     })
   }
 
+  incrememtor = () => {
+    if (this.state.i == (this.state.creatures.length - 1)) {
+      this.setState({
+        i: 0
+      })
+    }
+    else {
+      this.setState({
+        i: this.state.i + 1
+      })
+    }
+
+  }
+
   render() {
     const rows = this.state.creatures.map((item, key) => (
       <Card>
-        <CardItem>
+        <CardItem style={key === this.state.i ? { backgroundColor: 'pink' } : { backgroundColor: 'white' }}>
           <Text>{item.name} </Text>
           <Text>HP: {item.hp} </Text>
           <Text>AC : {item.ac} </Text>
           <Text>Initiative: {item.initiative} </Text>
           <Right>
-            <Button 
-            transparent
-            onLongPress={() => this.handleDelete(key)}>
+            <Button
+              transparent
+              onLongPress={() => this.handleDelete(key)}>
               <Icon name="arrow-forward" />
             </Button>
           </Right>
@@ -138,6 +152,7 @@ export default class InitiativeTracker extends Component {
             <Row style={{ height: 50 }}>
               <Button
                 full
+                onPress={this.incrememtor}
                 style={{ flex: 1 }}><Text>Next</Text></Button>
             </Row>
           </Grid>
