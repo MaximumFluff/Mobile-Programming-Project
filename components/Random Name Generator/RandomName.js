@@ -24,7 +24,7 @@ import {
   Row
 } from "native-base";
 import { Asset, AppLoading } from "expo";
-import { SideBar } from "./SideBar";
+import { SideBar } from "../SideBar/SideBar";
 
 export default class RandomName extends React.Component {
   constructor(props) {

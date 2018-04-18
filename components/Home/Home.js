@@ -19,7 +19,7 @@ export default class Home extends React.Component {
                     <Title>Home</Title>
                 </Body>
             </Header>
-            <Image source={require("./cover.png")} style={{width: width, height: height + 20}} />
+            <Image source={require("../../cover.png")} style={{width: width, height: height + 20}} />
         </Container>
     );
   }

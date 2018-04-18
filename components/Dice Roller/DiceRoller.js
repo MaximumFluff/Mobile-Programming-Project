@@ -20,7 +20,7 @@ import {
   Drawer
 } from "native-base";
 import { Asset, AppLoading } from "expo";
-import {SideBar} from "./SideBar";
+import {SideBar} from "../SideBar/SideBar";
 
 export default class DiceRoller extends React.Component {
     state = {
@@ -66,7 +66,7 @@ export default class DiceRoller extends React.Component {
             <Card>
               <CardItem>
                 <Left>
-                  <Thumbnail source={require("./d20icon.png")} />
+                  <Thumbnail source={require("../../d20icon.png")} />
                   <Body>
                     <Text>Dice Roller</Text>
                     <Text note>Developed by Alex Jacobs</Text>
@@ -75,7 +75,7 @@ export default class DiceRoller extends React.Component {
               </CardItem>
               <CardItem cardBody>
                 <Image
-                  source={require("./dice.jpg")}
+                  source={require("../../dice.jpg")}
                   style={{ height: 200, width: null, flex: 1 }}
                 />
               </CardItem>

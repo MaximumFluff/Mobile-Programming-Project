@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Expo from "expo";
-import MyApp from "./router";
-import SideBar from "./SideBar";
+import MyApp from "./components/SideBar/router";
+import SideBar from "./components/SideBar/SideBar";
 
 export default class App extends React.Component {
     state = {isReady: false}

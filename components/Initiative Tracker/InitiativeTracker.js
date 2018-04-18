@@ -22,11 +22,49 @@ import {
   Row,
   Text
 } from "native-base";
+import { StackNavigator } from 'react-navigation';
+import { SideBar } from "../SideBar/SideBar";
 
 export default class InitiativeTracker extends Component {
+  // This handles rendering the normal navbar in the context of the Stack Navigator
+  static navigationOptions = ({ navigation }) => ({
+    header: (
+      <Header style={{ paddingTop: 30, paddingBottom: 20, height: 73 }}>
+        <Left>
+          <Button
+            transparent
+            onPress={() => this.props.navigation.navigate("Home")}>
+            <Icon name="arrow-back" />
+          </Button>
+        </Left>
+        <Body>
+          <Title>Initiative Tracker</Title>
+        </Body>
+        <Right>
+          <Button
+            transparent
+            onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+            <Icon name="menu" />
+          </Button>
+        </Right>
+      </Header>
+    )
+  });
+
   constructor(props) {
     super(props);
     this.state = { creatures: [], name: "", ac: "", hp: "", initiative: "", i: 0 };
+  }
+
+  componentDidMount() {
+    const { params } = this.props.navigation.state;
+    if (params) {
+      this.setState({
+        creatures: params.creatures.sort((a,b) => {
+          return b.initiative - a.initiative
+        })
+      })
+    }
   }
 
   addPlayer = () => {
@@ -38,11 +76,10 @@ export default class InitiativeTracker extends Component {
       initiative: this.state.initiative
     }
     newArray = [...this.state.creatures, newPlayer]
-    newArray.sort((a, b) => {
-      return b.initiative - a.initiative
-    })
     this.setState({
-      creatures: newArray
+      creatures: newArray.sort((a, b) => {
+        return b.initiative - a.initiative
+      })
     })
   }
 
@@ -55,7 +92,7 @@ export default class InitiativeTracker extends Component {
     })
   }
 
-  incrememtor = () => {
+  incrementor = () => {
     if (this.state.i == (this.state.creatures.length - 1)) {
       this.setState({
         i: 0
@@ -72,7 +109,7 @@ export default class InitiativeTracker extends Component {
     }
   }
 
-  decrememtor = () => {
+  decrementor = () => {
     if (this.state.i == 0) {
       this.setState({
         i: this.state.creatures.length - 1
@@ -89,7 +126,9 @@ export default class InitiativeTracker extends Component {
     }
   }
 
+
   render() {
+    const { navigate } = this.props.navigation;
     const rows = this.state.creatures.map((item, key) => (
       <Card>
         <CardItem style={key === this.state.i ? { backgroundColor: 'pink' } : { backgroundColor: 'white' }}>
@@ -100,6 +139,8 @@ export default class InitiativeTracker extends Component {
           <Right>
             <Button
               transparent
+              onPress={() => navigate('EditCreature', {creatures: this.state.creatures, key: key})}
+              style={{width: 25}}
               onLongPress={() => this.handleDelete(key)}>
               <Icon name="arrow-forward" />
             </Button>
@@ -110,25 +151,6 @@ export default class InitiativeTracker extends Component {
 
     return (
       <Container>
-        <Header style={{ paddingTop: 30, paddingBottom: 20, height: 73 }}>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate("Home")}>
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Initiative Tracker</Title>
-          </Body>
-          <Right>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-              <Icon name="menu" />
-            </Button>
-          </Right>
-        </Header>
         <Content contentContainerStyle={{ flex: 1 }} style={{ padding: 10 }}>
           <Grid>
             <Row style={{ height: 50 }}>
@@ -172,12 +194,12 @@ export default class InitiativeTracker extends Component {
             <Row style={{ height: 50 }}>
               <Button
                 full
-                onPress={this.decrememtor}
+                onPress={this.decrementor}
                 style={{ flex: 1, marginRight: 10 }}><Text>Prev</Text></Button>
               <Button
                 full
-                onPress={this.incrememtor}
-                style={{ flex: 1, marginLeftt: 10 }}><Text>Next</Text></Button>
+                onPress={this.incrementor}
+                style={{ flex: 1, marginLeft: 10 }}><Text>Next</Text></Button>
             </Row>
           </Grid>
         </Content>
@@ -185,6 +207,8 @@ export default class InitiativeTracker extends Component {
     );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
