@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, TextInput, StyleSheet } from "react-native";
+import { ScrollView, TextInput, StyleSheet, Alert } from "react-native";
 import {
   Container,
   Header,
@@ -30,26 +30,46 @@ export default class InitiativeTracker extends Component {
   }
 
   addPlayer = () => {
+    let newArray = []
     const newPlayer = {
       name: this.state.name,
       hp: this.state.hp,
       ac: this.state.ac,
       initiative: this.state.initiative
     }
-    this.setState({
-      creatures: [...this.state.creatures, newPlayer]
+    newArray = [...this.state.creatures, newPlayer]
+    newArray.sort((a, b) => {
+      return b.initiative - a.initiative
     })
-    console.warn(this.state.creatures)
+    this.setState({
+      creatures: newArray
+    })
+  }
+
+  handleDelete = (index) => {
+    Alert.alert("Deleting item now")
+    let nameToFilter = this.state.creatures[index].name
+    let filteredArray = this.state.creatures.filter((item, index) => item.name != nameToFilter)
+    this.setState({
+      creatures: filteredArray
+    })
   }
 
   render() {
-    const rows = this.state.creatures.map((item) => (
+    const rows = this.state.creatures.map((item, key) => (
       <Card>
         <CardItem>
           <Text>{item.name} </Text>
           <Text>HP: {item.hp} </Text>
           <Text>AC : {item.ac} </Text>
           <Text>Initiative: {item.initiative} </Text>
+          <Right>
+            <Button 
+            transparent
+            onLongPress={() => this.handleDelete(key)}>
+              <Icon name="arrow-forward" />
+            </Button>
+          </Right>
         </CardItem>
       </Card>
     ))
@@ -102,7 +122,6 @@ export default class InitiativeTracker extends Component {
                 placeholder=" Initiative"
                 style={{ height: 40, borderColor: 'black', borderWidth: 1, width: 100, flex: 1 }}
               />
-
             </Row>
             <Row style={{ height: 50 }}>
               <Button
@@ -119,7 +138,7 @@ export default class InitiativeTracker extends Component {
             <Row style={{ height: 50 }}>
               <Button
                 full
-                style={{flex: 1}}><Text>Next</Text></Button>
+                style={{ flex: 1 }}><Text>Next</Text></Button>
             </Row>
           </Grid>
         </Content>
