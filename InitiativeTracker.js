@@ -26,7 +26,7 @@ import {
 export default class InitiativeTracker extends Component {
   constructor(props) {
     super(props);
-    this.state = { creatures: [], name: "", ac: "", hp: "", initiative: "" };
+    this.state = { creatures: [], name: "", ac: "", hp: "", initiative: "", i: 0 };
   }
 
   addPlayer = () => {
@@ -111,10 +111,15 @@ export default class InitiativeTracker extends Component {
                 onPress={this.addPlayer}
                 style={{ flex: 1 }}><Text>Add player</Text></Button>
             </Row>
-            <Row style={{ height: 500 }}>
+            <Row style={{ height: 480 }}>
               <ScrollView>
                 {rows}
               </ScrollView>
+            </Row>
+            <Row style={{ height: 50 }}>
+              <Button
+                full
+                style={{flex: 1}}><Text>Next</Text></Button>
             </Row>
           </Grid>
         </Content>
