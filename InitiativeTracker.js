@@ -61,12 +61,32 @@ export default class InitiativeTracker extends Component {
         i: 0
       })
     }
+    else if (this.state.creatures == "") {
+      // Error handling, if nothing in state and button pressed make no changes
+      return
+    }
     else {
       this.setState({
         i: this.state.i + 1
       })
     }
+  }
 
+  decrememtor = () => {
+    if (this.state.i == 0) {
+      this.setState({
+        i: this.state.creatures.length - 1
+      })
+    }
+    else if (this.state.creatures == "") {
+      // Error handling, if nothing in state and button pressed make no changes
+      return
+    }
+    else {
+      this.setState({
+        i: this.state.i - 1
+      })
+    }
   }
 
   render() {
@@ -152,8 +172,12 @@ export default class InitiativeTracker extends Component {
             <Row style={{ height: 50 }}>
               <Button
                 full
+                onPress={this.decrememtor}
+                style={{ flex: 1, marginRight: 10 }}><Text>Prev</Text></Button>
+              <Button
+                full
                 onPress={this.incrememtor}
-                style={{ flex: 1 }}><Text>Next</Text></Button>
+                style={{ flex: 1, marginLeftt: 10 }}><Text>Next</Text></Button>
             </Row>
           </Grid>
         </Content>
