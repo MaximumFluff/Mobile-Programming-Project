@@ -10,7 +10,6 @@ import {
   Thumbnail
 } from "native-base";
 import DiceRoller from "../Dice Roller/DiceRoller";
-import Home from "../Home/Home";
 import RandomName from "../Random Name Generator/RandomName";
 import { DrawerNavigator } from "react-navigation";
 const routes = [

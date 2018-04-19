@@ -25,6 +25,7 @@ import {
 import { StackNavigator } from 'react-navigation';
 import { SideBar } from "../SideBar/SideBar";
 
+
 export default class InitiativeTracker extends Component {
   // This handles rendering the normal navbar in the context of the Stack Navigator
   static navigationOptions = ({ navigation }) => ({
@@ -33,7 +34,7 @@ export default class InitiativeTracker extends Component {
         <Left>
           <Button
             transparent
-            onPress={() => this.props.navigation.navigate("Home")}>
+            onPress={() => navigation.navigate("Home")}>
             <Icon name="arrow-back" />
           </Button>
         </Left>
@@ -43,14 +44,14 @@ export default class InitiativeTracker extends Component {
         <Right>
           <Button
             transparent
-            onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+            onPress={() => navigation.navigate("DrawerOpen")}>
             <Icon name="menu" />
           </Button>
         </Right>
       </Header>
     )
   });
-
+  
   constructor(props) {
     super(props);
     this.state = { creatures: [], name: "", ac: "", hp: "", initiative: "", i: 0 };
@@ -223,3 +224,5 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+
+/* solved navigation issues with: https://github.com/react-navigation/react-navigation/issues/3254 */

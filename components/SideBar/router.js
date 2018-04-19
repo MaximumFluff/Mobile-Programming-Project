@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { DrawerNavigator } from "react-navigation";
+import { DrawerNavigator, StackNavigator } from "react-navigation";
 import Home from "../Home/Home";
 import DiceRoller from "../Dice Roller/DiceRoller";
 import SideBar from "./SideBar";
 import RandomName from "../Random Name Generator/RandomName";
-import index from "../Initiative Tracker/index";
+import EditCreature from '../Initiative Tracker/EditCreature'
+import InitiativeTracker from '../Initiative Tracker/InitiativeTracker'
 
 const MyApp = DrawerNavigator(
   {
@@ -18,7 +19,10 @@ const MyApp = DrawerNavigator(
       screen: RandomName
     },
     "Initiative Tracker": {
-        screen: index
+      screen: StackNavigator({
+        InitiativeTracker: { screen: InitiativeTracker },
+        EditCreature: { screen: EditCreature }
+      })
     }
   },
   {
