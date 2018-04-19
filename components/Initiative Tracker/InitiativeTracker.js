@@ -170,18 +170,21 @@ export default class InitiativeTracker extends Component {
                 onChangeText={(hp) => this.setState({ hp })}
                 value={this.state.hp}
                 placeholder=" HP"
+                keyboardType="numeric"
                 style={{ height: 40, borderColor: 'black', borderWidth: 1, width: 100, flex: 1 }}
               />
               <TextInput
                 onChangeText={(ac) => this.setState({ ac })}
                 value={this.state.ac}
                 placeholder=" AC"
+                keyboardType="numeric"
                 style={{ height: 40, borderColor: 'black', borderWidth: 1, width: 100, flex: 1 }}
               />
               <TextInput
                 onChangeText={(initiative) => this.setState({ initiative })}
                 value={this.state.initiative}
                 placeholder=" Initiative"
+                keyboardType="numeric"
                 style={{ height: 40, borderColor: 'black', borderWidth: 1, width: 100, flex: 1 }}
               />
             </Row>
