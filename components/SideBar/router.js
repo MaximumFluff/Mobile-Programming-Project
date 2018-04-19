@@ -4,8 +4,9 @@ import Home from "../Home/Home";
 import DiceRoller from "../Dice Roller/DiceRoller";
 import SideBar from "./SideBar";
 import RandomName from "../Random Name Generator/RandomName";
-import EditCreature from '../Initiative Tracker/EditCreature'
-import InitiativeTracker from '../Initiative Tracker/InitiativeTracker'
+import EditCreature from '../Initiative Tracker/EditCreature';
+import InitiativeTracker from '../Initiative Tracker/InitiativeTracker';
+import SpellBook from '../Spell Book/SpellBook';
 
 const MyApp = DrawerNavigator(
   {
@@ -23,6 +24,9 @@ const MyApp = DrawerNavigator(
         InitiativeTracker: { screen: InitiativeTracker },
         EditCreature: { screen: EditCreature }
       })
+    },
+    "Spell Book": {
+      screen: SpellBook
     }
   },
   {
