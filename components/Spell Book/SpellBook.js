@@ -40,6 +40,15 @@ export default class SpellBook extends Component {
     fetch(url)
       .then(response => response.json())
       .then(responseJson => {
+        let componentsAll = ""
+        for (let i = 0; i < responseJson.components.length; i++) {
+          console.log(responseJson.components[i]);
+          componentsAll += responseJson.components[i];
+        }
+        responseJson.components = componentsAll
+        if (responseJson.higher_level === undefined) {
+          responseJson.higher_level = "Does not scale to higher levels"
+        }
         this.setState({
           spells: [...this.state.spells, responseJson]
         })
@@ -60,6 +69,14 @@ export default class SpellBook extends Component {
         <CardItem>
           <Body>
             <Text>{item.desc[0]}</Text>
+            <Text>Page: {item.page}</Text>
+            <Text>Range: {item.range}</Text>
+            <Text>Ritual: {item.ritual}</Text>
+            <Text>Concentration: {item.concentration}</Text>
+            <Text>Components: {item.components}</Text>
+            <Text>Casting Time: {item.casting_time}</Text>
+            <Text>Level: {item.level}</Text>
+            <Text>At higher levels: {item.higher_level}</Text>
           </Body>
         </CardItem>
       </Card>
