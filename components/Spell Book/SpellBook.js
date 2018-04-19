@@ -1,7 +1,7 @@
 import Autocomplete from 'react-native-autocomplete-input'
 import React, { Component } from 'react';
 import { TouchableOpacity, ScrollView, View } from 'react-native';
-import { Container, Content, Button, Text, Grid, Row, Col, Header, Left, Icon, Right, Body, Title, Card, CardItem } from 'native-base';
+import { Container, Content, Button, Text, Grid, Row, Col, Header, Left, Icon, Right, Body, Title, Card, CardItem, DeckSwiper } from 'native-base';
 import { SideBar } from '../SideBar/SideBar';
 import data from './select.json';
 /* Figured out JSON import from: https://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native */
@@ -16,7 +16,6 @@ export default class SpellBook extends Component {
     })
     //console.warn(newArray);
     this.state = { query: "", data: newArray, spells: [] }
-    console.warn(this.state.data)
   }
 
   findSpell = query => {
@@ -52,6 +51,7 @@ export default class SpellBook extends Component {
         this.setState({
           spells: [...this.state.spells, responseJson]
         })
+        console.warn
       })
       .catch(err => {
         console.warn(err)
@@ -59,9 +59,9 @@ export default class SpellBook extends Component {
   }
 
   render() {
-    const { data } = this.state.data
+    const data = this.state.data
     const spells = this.findSpell(this.state.query)
-    const rows = this.state.spells.map((item, key) => (
+    /*const rows = this.state.spells.map((item, key) => (
       <Card contentContainerStyle={{ flex: 1 }}>
         <CardItem header bordered>
           <Text>{item.name}</Text>
@@ -80,7 +80,7 @@ export default class SpellBook extends Component {
           </Body>
         </CardItem>
       </Card>
-    ))
+    ))*/
     return (
       <Container>
         <Header style={{ paddingTop: 30, paddingBottom: 20, height: 73 }}>
@@ -123,21 +123,47 @@ export default class SpellBook extends Component {
                 )}
               />
             </Row>
-            <Row size={75}>
+            <Row size={60}>
               <Col>
-                <Content>
-                  <ScrollView>
-                    {rows}
-                  </ScrollView>
-                </Content>
+                <DeckSwiper
+                  style={{ flex: 1 }}
+                  dataSource={this.state.spells}
+                  renderItem={item => (
+                    <Card contentContainerStyle={{ flex: 1 }}>
+                      <CardItem header bordered>
+                        <Text>{item.name}</Text>
+                      </CardItem>
+                      <CardItem>
+                        <Body>
+                          <Text>{item.desc[0]}</Text>
+                          <Text>Page: {item.page}</Text>
+                          <Text>Range: {item.range}</Text>
+                          <Text>Ritual: {item.ritual}</Text>
+                          <Text>Concentration: {item.concentration}</Text>
+                          <Text>Components: {item.components}</Text>
+                          <Text>Casting Time: {item.casting_time}</Text>
+                          <Text>Level: {item.level}</Text>
+                          <Text>At higher levels: {item.higher_level}</Text>
+                        </Body>
+                      </CardItem>
+                    </Card>)}></DeckSwiper>
               </Col>
             </Row>
-            <Row size={7}>
-              <Button
-                full
-                info
-                onPress={() => this.getSpellInfo(this.state.query)}
-                style={{ flex: 1 }}><Text>Search</Text></Button>
+            <Row size={5}>
+              <Col>
+                <Button
+                  full
+                  info
+                  onPress={() => this.getSpellInfo(this.state.query)}
+                  style={{ flex: 1 }}><Text>Save to memory</Text></Button>
+              </Col>
+              <Col>
+                <Button
+                  full
+                  info
+                  onPress={() => this.getSpellInfo(this.state.query)}
+                  style={{ flex: 1 }}><Text>Add</Text></Button>
+              </Col>
             </Row>
           </Grid>
         </Content>
