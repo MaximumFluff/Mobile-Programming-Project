@@ -60,7 +60,7 @@ export default class InitiativeTracker extends Component {
     const { params } = this.props.navigation.state;
     if (params) {
       this.setState({
-        creatures: params.creatures.sort((a,b) => {
+        creatures: params.creatures.sort((a, b) => {
           return b.initiative - a.initiative
         })
       })
@@ -90,6 +90,11 @@ export default class InitiativeTracker extends Component {
     this.setState({
       creatures: filteredArray
     })
+    if (this.state.i > (this.state.creatures.length - 1)) {
+      this.setState({
+        i: this.state.i - 1
+      })
+    }
   }
 
   incrementor = () => {
@@ -139,8 +144,8 @@ export default class InitiativeTracker extends Component {
           <Right>
             <Button
               transparent
-              onPress={() => navigate('EditCreature', {creatures: this.state.creatures, key: key})}
-              style={{width: 25}}
+              onPress={() => navigate('EditCreature', { creatures: this.state.creatures, key: key })}
+              style={{ width: 25 }}
               onLongPress={() => this.handleDelete(key)}>
               <Icon name="arrow-forward" />
             </Button>
