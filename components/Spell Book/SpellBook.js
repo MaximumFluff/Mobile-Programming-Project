@@ -19,8 +19,19 @@ export default class SpellBook extends Component {
     console.warn(this.state.data)
   }
 
+  findSpell = query => {
+    /* filtering example repurposed from https://www.npmjs.com/package/react-native-autocomplete */
+    if (query === '') {
+      return []
+    }
+    return this.state.data.filter(item =>
+      item.toLowerCase().startsWith(query.toLowerCase())
+    )
+  }
+
   render() {
     const { data } = this.state.data
+    const spells = this.findSpell(this.state.query)
     return (
       <Container>
         <Content contentContainerStyle={{ flex: 1 }}>
@@ -28,7 +39,7 @@ export default class SpellBook extends Component {
             <Row size={25}>
               <Autocomplete
                 style={{ marginTop: 50 }}
-                data={this.state.data}
+                data={spells}
                 defaultValue={this.state.query}
                 onChangeText={text => this.setState({ query: text })}
                 placeholder="Enter spell"
