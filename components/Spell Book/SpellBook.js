@@ -127,9 +127,9 @@ export default class SpellBook extends Component {
     }
   };
 
+  // This is the worlds hackiest solution to the problem of re-rendering when deleting an item. this simply switches the loading circle on, then switches it off when the deletion is done, forcing a re-render
   deleteSpell = async (item) => {
     /* fixed deleting with help from: https://stackoverflow.com/questions/8668174/indexof-method-in-an-object-array */
-    // This is the worlds hackiest solution, feels bad man
     await this.setState({
       isLoading: true
     });
@@ -141,6 +141,12 @@ export default class SpellBook extends Component {
       spells: newArray,
       isLoading: false
     });
+    await Toast.show({
+      text: "Spell deleted!",
+      buttonText: "Okay",
+      duration: 3000,
+      position: "bottom"
+    })
   };
 
   renderDeck = () => {
