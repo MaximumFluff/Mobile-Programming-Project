@@ -1,7 +1,7 @@
 import Autocomplete from 'react-native-autocomplete-input'
 import React, { Component } from 'react';
-import { TouchableOpacity, ScrollView, View } from 'react-native';
-import { Container, Content, Button, Text, Grid, Row, Col, Header, Left, Icon, Right, Body, Title, Card, CardItem, DeckSwiper } from 'native-base';
+import { TouchableOpacity, ScrollView, View, AsyncStorage } from 'react-native';
+import { Container, Content, Button, Text, Grid, Row, Col, Header, Left, Icon, Right, Body, Title, Card, CardItem, DeckSwiper, Spinner } from 'native-base';
 import { SideBar } from '../SideBar/SideBar';
 import data from './select.json';
 /* Figured out JSON import from: https://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native */
@@ -14,8 +14,11 @@ export default class SpellBook extends Component {
     data.forEach((item, key) => {
       newArray[key] = item.text
     })
-    //console.warn(newArray);
-    this.state = { query: "", data: newArray, spells: [] }
+    this.state = { query: "", data: newArray, spells: [], isLoading: true }
+  }
+
+  componentDidMount() {
+    this.loadData()
   }
 
   findSpell = query => {
@@ -34,7 +37,6 @@ export default class SpellBook extends Component {
       return element === query
     })
     index = index + 1
-    console.warn(index)
     let url = `http://dnd5eapi.co/api/spells/${index}/`
     fetch(url)
       .then(response => response.json())
@@ -51,36 +53,73 @@ export default class SpellBook extends Component {
         this.setState({
           spells: [...this.state.spells, responseJson]
         })
-        console.warn
       })
       .catch(err => {
-        console.warn(err)
+        console.warn("Error", err)
       })
+  }
+
+  saveData = async () => {
+    try {
+      let currentSpells = JSON.stringify(this.state.spells)
+      await AsyncStorage.setItem('spells', currentSpells)
+      console.warn("Succesfully saved!")
+    }
+    catch (err) {
+      console.warn(err)
+    }
+  }
+
+  loadData = async () => {
+    try {
+      let savedSpells = await AsyncStorage.getItem('spells');
+      if (savedSpells != null) {
+        this.setState({
+          spells: JSON.parse(savedSpells),
+          isLoading: false
+        })
+        //console.warn("Data succesfully loaded!")
+      }
+      else {
+        console.warn("No data saved yet")
+      }
+    }
+    catch (err) {
+      console.warn("Error", err)
+    }
   }
 
   render() {
     const data = this.state.data
     const spells = this.findSpell(this.state.query)
-    /*const rows = this.state.spells.map((item, key) => (
-      <Card contentContainerStyle={{ flex: 1 }}>
-        <CardItem header bordered>
-          <Text>{item.name}</Text>
-        </CardItem>
-        <CardItem>
-          <Body>
-            <Text>{item.desc[0]}</Text>
-            <Text>Page: {item.page}</Text>
-            <Text>Range: {item.range}</Text>
-            <Text>Ritual: {item.ritual}</Text>
-            <Text>Concentration: {item.concentration}</Text>
-            <Text>Components: {item.components}</Text>
-            <Text>Casting Time: {item.casting_time}</Text>
-            <Text>Level: {item.level}</Text>
-            <Text>At higher levels: {item.higher_level}</Text>
-          </Body>
-        </CardItem>
-      </Card>
-    ))*/
+    if (this.state.isLoading) {
+      return (
+        <Container>
+          <Header style={{ paddingTop: 30, paddingBottom: 20, height: 73 }}>
+            <Left>
+              <Button
+                transparent
+                onPress={() => this.props.navigation.navigate("Home")}>
+                <Icon name="arrow-back" />
+              </Button>
+            </Left>
+            <Body>
+              <Title style={{ fontSize: 13 }}>Spell Book</Title>
+            </Body>
+            <Right>
+              <Button
+                transparent
+                onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+                <Icon name="menu" />
+              </Button>
+            </Right>
+          </Header>
+          <Content contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Spinner color="blue" />
+          </Content>
+        </Container>
+      )
+    }
     return (
       <Container>
         <Header style={{ paddingTop: 30, paddingBottom: 20, height: 73 }}>
@@ -154,7 +193,7 @@ export default class SpellBook extends Component {
                 <Button
                   full
                   info
-                  onPress={() => this.getSpellInfo(this.state.query)}
+                  onPress={this.saveData}
                   style={{ flex: 1 }}><Text>Save to memory</Text></Button>
               </Col>
               <Col>

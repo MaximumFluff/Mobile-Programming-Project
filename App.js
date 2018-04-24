@@ -5,7 +5,7 @@ import MyApp from "./components/SideBar/router";
 import SideBar from "./components/SideBar/SideBar";
 
 export default class App extends React.Component {
-    state = {isReady: false}
+  state = { isReady: false }
   async componentWillMount() {
     await Expo.Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
