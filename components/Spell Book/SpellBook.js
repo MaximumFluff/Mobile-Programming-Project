@@ -25,8 +25,6 @@ import { SideBar } from "../SideBar/SideBar";
 import data from "./select.json";
 /* Figured out JSON import from: https://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native */
 
-// TODO: Fix the fucking delete and the re-rendering!
-
 export default class SpellBook extends Component {
   constructor(props) {
     super(props);
