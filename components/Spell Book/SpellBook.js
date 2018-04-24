@@ -127,27 +127,29 @@ export default class SpellBook extends Component {
     }
   };
 
-  deleteSpell = (key) => {
-    let arrayToChange = this.state.spells;
-    arrayToChange.splice(key, 1);
-    Toast.show({
-      text: "Don't forget to save changes!",
-      buttonText: "Okay",
-      duration: 3000,
-      position: "bottom"
+  deleteSpell = async (item) => {
+    /* fixed deleting with help from: https://stackoverflow.com/questions/8668174/indexof-method-in-an-object-array */
+    // This is the worlds hackiest solution, feels bad man
+    await this.setState({
+      isLoading: true
     });
-    this.setState({
-      spells: arrayToChange
+    let index = this.state.spells.findIndex((i) => i._id === item._id);
+    console.warn(index);
+    let newArray = this.state.spells;
+    newArray.splice(index, 1);
+    await this.setState({
+      spells: newArray,
+      isLoading: false
     });
-    this.setState(this.state);
   };
 
   renderDeck = () => {
+    const listOfSpells = this.state.spells;
     return (
       <DeckSwiper
         style={{ flex: 1 }}
-        dataSource={this.state.spells}
-        renderItem={(item, key) => (
+        dataSource={listOfSpells}
+        renderItem={(item) => (
           <Card style={{ flex: 1, elevation: 3, paddingTop: 0, marginTop: 0 }}>
             <CardItem header bordered>
               <Text>{item.name}</Text>
@@ -173,7 +175,7 @@ export default class SpellBook extends Component {
                 </Text>
               </Body>
             </CardItem>
-            <CardItem header button onPress={() => this.deleteSpell(key)}>
+            <CardItem header button onPress={() => this.deleteSpell(item)}>
               <Text style={{ fontSize: 13 }}>Delete spell</Text>
             </CardItem>
           </Card>
