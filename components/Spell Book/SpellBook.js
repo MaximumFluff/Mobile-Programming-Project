@@ -25,6 +25,8 @@ import { SideBar } from "../SideBar/SideBar";
 import data from "./select.json";
 /* Figured out JSON import from: https://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native */
 
+// TODO: Fix the fucking delete and the re-rendering!
+
 export default class SpellBook extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +34,13 @@ export default class SpellBook extends Component {
     data.forEach((item, key) => {
       newArray[key] = item.text;
     });
-    this.state = { query: "", data: newArray, spells: [], isLoading: true, showToast: false };
+    this.state = {
+      query: "",
+      data: newArray,
+      spells: [],
+      isLoading: true,
+      showToast: false
+    };
   }
 
   componentDidMount() {
@@ -72,11 +80,11 @@ export default class SpellBook extends Component {
           spells: [...this.state.spells, responseJson]
         });
         Toast.show({
-            text: "Spell added!",
-            buttonText: "Okay",
-            duration: 3000,
-            position: "bottom"
-        })
+          text: "Spell added!",
+          buttonText: "Okay",
+          duration: 3000,
+          position: "bottom"
+        });
       })
       .catch((err) => {
         console.warn("Error", err);
@@ -92,7 +100,7 @@ export default class SpellBook extends Component {
         buttonText: "Okay",
         duration: 3000,
         position: "bottom"
-      })
+      });
     } catch (err) {
       console.warn(err);
     }
@@ -117,6 +125,61 @@ export default class SpellBook extends Component {
     } catch (err) {
       console.warn("Error", err);
     }
+  };
+
+  deleteSpell = (key) => {
+    let arrayToChange = this.state.spells;
+    arrayToChange.splice(key, 1);
+    Toast.show({
+      text: "Don't forget to save changes!",
+      buttonText: "Okay",
+      duration: 3000,
+      position: "bottom"
+    });
+    this.setState({
+      spells: arrayToChange
+    });
+    this.setState(this.state);
+  };
+
+  renderDeck = () => {
+    return (
+      <DeckSwiper
+        style={{ flex: 1 }}
+        dataSource={this.state.spells}
+        renderItem={(item, key) => (
+          <Card style={{ flex: 1, elevation: 3, paddingTop: 0, marginTop: 0 }}>
+            <CardItem header bordered>
+              <Text>{item.name}</Text>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text style={{ fontSize: 13 }}>{item.desc[0]}</Text>
+                <Text style={{ fontSize: 13 }}>Page: {item.page}</Text>
+                <Text style={{ fontSize: 13 }}>Range: {item.range}</Text>
+                <Text style={{ fontSize: 13 }}>Ritual: {item.ritual}</Text>
+                <Text style={{ fontSize: 13 }}>
+                  Concentration: {item.concentration}
+                </Text>
+                <Text style={{ fontSize: 13 }}>
+                  Components: {item.components}
+                </Text>
+                <Text style={{ fontSize: 13 }}>
+                  Casting Time: {item.casting_time}
+                </Text>
+                <Text style={{ fontSize: 13 }}>Level: {item.level}</Text>
+                <Text style={{ fontSize: 13 }}>
+                  At higher levels: {item.higher_level}
+                </Text>
+              </Body>
+            </CardItem>
+            <CardItem header button onPress={() => this.deleteSpell(key)}>
+              <Text style={{ fontSize: 13 }}>Delete spell</Text>
+            </CardItem>
+          </Card>
+        )}
+      />
+    );
   };
 
   render() {
@@ -180,7 +243,12 @@ export default class SpellBook extends Component {
           <Grid>
             <Row size={20}>
               <Autocomplete
-                style={{ marginTop: 25, fontSize: 20 }}
+                style={{
+                  marginTop: 25,
+                  marginBottom: 0,
+                  paddingBottom: 0,
+                  fontSize: 20
+                }}
                 data={spells}
                 defaultValue={this.state.query}
                 onChangeText={(text) => this.setState({ query: text })}
@@ -196,32 +264,7 @@ export default class SpellBook extends Component {
               />
             </Row>
             <Row size={60}>
-              <Col>
-                <DeckSwiper
-                  style={{ flex: 1 }}
-                  dataSource={this.state.spells}
-                  renderItem={(item) => (
-                    <Card contentContainerStyle={{ flex: 1 }}>
-                      <CardItem header bordered>
-                        <Text>{item.name}</Text>
-                      </CardItem>
-                      <CardItem>
-                        <Body>
-                          <Text>{item.desc[0]}</Text>
-                          <Text>Page: {item.page}</Text>
-                          <Text>Range: {item.range}</Text>
-                          <Text>Ritual: {item.ritual}</Text>
-                          <Text>Concentration: {item.concentration}</Text>
-                          <Text>Components: {item.components}</Text>
-                          <Text>Casting Time: {item.casting_time}</Text>
-                          <Text>Level: {item.level}</Text>
-                          <Text>At higher levels: {item.higher_level}</Text>
-                        </Body>
-                      </CardItem>
-                    </Card>
-                  )}
-                />
-              </Col>
+              <Col>{this.renderDeck()}</Col>
             </Row>
             <Row size={5}>
               <Col>

@@ -17,16 +17,21 @@ import {
   Spinner,
   Button,
   Thumbnail,
-  Drawer
+  Drawer,
+  Toast
 } from "native-base";
 import { Asset, AppLoading } from "expo";
-import {SideBar} from "../SideBar/SideBar";
+import { SideBar } from "../SideBar/SideBar";
 
 export default class DiceRoller extends React.Component {
-    state = {
-    diceValue: 100,
-    generatedValue: "Nothing rolled yet!",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      diceValue: 100,
+      generatedValue: "Nothing rolled yet!",
+      showToast: false
+    };
+  }
 
   calculateDiceRoll = () => {
     let currentDiceValue = this.state.diceValue;
@@ -35,86 +40,97 @@ export default class DiceRoller extends React.Component {
       generatedValue: randomRoll
     });
     if (randomRoll === 20 && currentDiceValue == 20) {
-      Alert.alert("Nat 20 boiz!");
+      Toast.show({
+        text: "A natural 20! Critical hit!",
+        buttonText: "Okay",
+        duration: 3000,
+        position: "bottom"
+      });
     } else if (randomRoll === 1 && currentDiceValue == 20) {
-      Alert.alert("Uh-oh! not looking good!");
+      Toast.show({
+        text: "Critical fail! not looking good!",
+        buttonText: "Okay",
+        duration: 3000,
+        position: "bottom"
+      });
     }
   };
-  // TODO: FIX the fucking emulator
+  
   render() {
     return (
-        <Container>
-          <Header style={{ paddingTop: 30, paddingBottom: 20, height: 73 }}>
-            <Left>
-              <Button transparent onPress={() => this.props.navigation.navigate("Home")}>
-                <Icon name="arrow-back" />
-              </Button>
-            </Left>
-            <Body>
-              <Title>Dice Roller</Title>
-            </Body>
-            <Right>
+      <Container>
+        <Header style={{ paddingTop: 30, paddingBottom: 20, height: 73 }}>
+          <Left>
             <Button
               transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}
-            >
+              onPress={() => this.props.navigation.navigate("Home")}>
+              <Icon name="arrow-back" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Dice Roller</Title>
+          </Body>
+          <Right>
+            <Button
+              transparent
+              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
               <Icon name="menu" />
             </Button>
-            </Right>
-          </Header>
-          <Content>
-            <Card>
-              <CardItem>
-                <Left>
-                  <Thumbnail source={require("../../d20icon.png")} />
-                  <Body>
-                    <Text>Dice Roller</Text>
-                    <Text note>Developed by Alex Jacobs</Text>
-                  </Body>
-                </Left>
-              </CardItem>
-              <CardItem cardBody>
-                <Image
-                  source={require("../../dice.jpg")}
-                  style={{ height: 200, width: null, flex: 1 }}
-                />
-              </CardItem>
-              <CardItem>
-                <Picker
-                  style={{ width: 200, flex: 1 }}
-                  selectedValue={this.state.diceValue}
-                  onValueChange={(itemValue, itemIndex) =>
-                    this.setState({ diceValue: itemValue })
-                  }>
-                  <Picker.Item label="d100" value="100" />
-                  <Picker.Item label="d20" value="20" />
-                  <Picker.Item label="d12" value="12" />
-                  <Picker.Item label="d10" value="10" />
-                  <Picker.Item label="d8" value="8" />
-                  <Picker.Item label="d6" value="6" />
-                  <Picker.Item label="d4" value="4" />
-                </Picker>
-              </CardItem>
-              <CardItem>
-                <Body style={styles.container}>
-                  <Text style={{ fontSize: 30 }}>
-                    {this.state.generatedValue}
-                  </Text>
+          </Right>
+        </Header>
+        <Content>
+          <Card>
+            <CardItem>
+              <Left>
+                <Thumbnail source={require("../../d20icon.png")} />
+                <Body>
+                  <Text>Dice Roller</Text>
+                  <Text note>Developed by Alex Jacobs</Text>
                 </Body>
-              </CardItem>
-              <CardItem>
-                <Button
-                  style={{ flex: 1 }}
-                  full
-                  info
-                  onPress={this.calculateDiceRoll}
-                  title="Something">
-                  <Title>Roll!</Title>
-                </Button>
-              </CardItem>
-            </Card>
-          </Content>
-        </Container>
+              </Left>
+            </CardItem>
+            <CardItem cardBody>
+              <Image
+                source={require("../../dice.jpg")}
+                style={{ height: 200, width: null, flex: 1 }}
+              />
+            </CardItem>
+            <CardItem>
+              <Picker
+                style={{ width: 200, flex: 1 }}
+                selectedValue={this.state.diceValue}
+                onValueChange={(itemValue, itemIndex) =>
+                  this.setState({ diceValue: itemValue })
+                }>
+                <Picker.Item label="d100" value="100" />
+                <Picker.Item label="d20" value="20" />
+                <Picker.Item label="d12" value="12" />
+                <Picker.Item label="d10" value="10" />
+                <Picker.Item label="d8" value="8" />
+                <Picker.Item label="d6" value="6" />
+                <Picker.Item label="d4" value="4" />
+              </Picker>
+            </CardItem>
+            <CardItem>
+              <Body style={styles.container}>
+                <Text style={{ fontSize: 30 }}>
+                  {this.state.generatedValue}
+                </Text>
+              </Body>
+            </CardItem>
+            <CardItem>
+              <Button
+                style={{ flex: 1 }}
+                full
+                info
+                onPress={this.calculateDiceRoll}
+                title="Something">
+                <Title>Roll!</Title>
+              </Button>
+            </CardItem>
+          </Card>
+        </Content>
+      </Container>
     );
   }
 }
