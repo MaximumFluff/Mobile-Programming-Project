@@ -84,8 +84,7 @@ export default class DiceRoller extends React.Component {
               <Left>
                 <Thumbnail source={require("../../d20icon.png")} />
                 <Body>
-                  <Text>Dice Roller</Text>
-                  <Text note>Developed by Alex Jacobs</Text>
+                  <Text note>May RNGesus bless your rolls</Text>
                 </Body>
               </Left>
             </CardItem>

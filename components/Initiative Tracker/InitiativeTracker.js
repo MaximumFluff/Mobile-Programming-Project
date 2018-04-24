@@ -82,10 +82,10 @@ export default class InitiativeTracker extends Component {
     };
     newArray = [...this.state.creatures, newPlayer];
     Toast.show({
-        text: "Player added",
-        buttonText: "Okay",
-        duration: 3000,
-        position: "bottom"
+      text: "Player added",
+      buttonText: "Okay",
+      duration: 3000,
+      position: "bottom"
     })
     this.setState({
       creatures: newArray.sort((a, b) => {
@@ -147,17 +147,19 @@ export default class InitiativeTracker extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const rows = this.state.creatures.map((item, key) => (
-      <Card>
+      <Card key={key}>
         <CardItem
           style={
             key === this.state.i
-              ? { backgroundColor: "pink" }
+              ? { backgroundColor: "lightblue" }
               : { backgroundColor: "white" }
           }>
-          <Text>{item.name} </Text>
-          <Text>HP: {item.hp} </Text>
-          <Text>AC : {item.ac} </Text>
-          <Text>Initiative: {item.initiative} </Text>
+          <Body>
+            <Text>{item.name} </Text>
+            <Text>HP: {item.hp} </Text>
+            <Text>AC : {item.ac} </Text>
+            <Text>Initiative: {item.initiative} </Text>
+          </Body>
           <Right>
             <Button
               transparent
@@ -167,7 +169,7 @@ export default class InitiativeTracker extends Component {
                   key: key
                 })
               }
-              style={{ width: 25 }}
+              style={{ width: 50 }}
               onLongPress={() => this.handleDelete(key)}>
               <Icon name="arrow-forward" />
             </Button>
@@ -177,7 +179,7 @@ export default class InitiativeTracker extends Component {
     ));
 
     return (
-        <Container>
+      <Container>
         <Content contentContainerStyle={{ flex: 1 }} style={{ padding: 10 }}>
           <Grid>
             <Row style={{ height: 50 }}>
@@ -195,7 +197,7 @@ export default class InitiativeTracker extends Component {
               />
               <TextInput
                 onChangeText={(hp) => this.setState({ hp })}
-                value={this.state.hp}
+                value={String(this.state.hp)}
                 placeholder=" HP"
                 keyboardType="numeric"
                 style={{
@@ -208,7 +210,7 @@ export default class InitiativeTracker extends Component {
               />
               <TextInput
                 onChangeText={(ac) => this.setState({ ac })}
-                value={this.state.ac}
+                value={String(this.state.ac)}
                 placeholder=" AC"
                 keyboardType="numeric"
                 style={{
@@ -221,7 +223,7 @@ export default class InitiativeTracker extends Component {
               />
               <TextInput
                 onChangeText={(initiative) => this.setState({ initiative })}
-                value={this.state.initiative}
+                value={String(this.state.initiative)}
                 placeholder=" Initiative"
                 keyboardType="numeric"
                 style={{
@@ -243,9 +245,9 @@ export default class InitiativeTracker extends Component {
               </Button>
             </Row>
             <Row style={{ height: 480 }}>
-              <ScrollView>{rows}</ScrollView>
+              <ScrollView>{this.state.creatures.length < 1 ? <Text>Tap the arrow to edit, hold to delete</Text> : rows}</ScrollView>
             </Row>
-            <Row style={{ height: 50 }}>
+            <Row style={{ height: 70 }}>
               <Button
                 full
                 onPress={this.decrementor}
