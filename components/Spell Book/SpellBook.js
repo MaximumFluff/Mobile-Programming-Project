@@ -18,7 +18,8 @@ import {
   Card,
   CardItem,
   DeckSwiper,
-  Spinner
+  Spinner,
+  Toast
 } from "native-base";
 import { SideBar } from "../SideBar/SideBar";
 import data from "./select.json";
@@ -31,7 +32,7 @@ export default class SpellBook extends Component {
     data.forEach((item, key) => {
       newArray[key] = item.text;
     });
-    this.state = { query: "", data: newArray, spells: [], isLoading: true };
+    this.state = { query: "", data: newArray, spells: [], isLoading: true, showToast: false };
   }
 
   componentDidMount() {
@@ -70,6 +71,12 @@ export default class SpellBook extends Component {
         this.setState({
           spells: [...this.state.spells, responseJson]
         });
+        Toast.show({
+            text: "Spell added!",
+            buttonText: "Okay",
+            duration: 3000,
+            position: "bottom"
+        })
       })
       .catch((err) => {
         console.warn("Error", err);
@@ -80,7 +87,12 @@ export default class SpellBook extends Component {
     try {
       let currentSpells = JSON.stringify(this.state.spells);
       await AsyncStorage.setItem("spells", currentSpells);
-      console.warn("Succesfully saved!");
+      Toast.show({
+        text: "Data saved!",
+        buttonText: "Okay",
+        duration: 3000,
+        position: "bottom"
+      })
     } catch (err) {
       console.warn(err);
     }

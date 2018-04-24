@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Root } from "native-base";
 import { DrawerNavigator, StackNavigator } from "react-navigation";
 import Home from "../Home/Home";
 import DiceRoller from "../Dice Roller/DiceRoller";
@@ -35,4 +36,10 @@ const MyApp = DrawerNavigator(
   }
 );
 
-export default MyApp;
+//export default MyApp;
+
+export default () => 
+    <Root>
+        <MyApp />
+    </Root>;
+
