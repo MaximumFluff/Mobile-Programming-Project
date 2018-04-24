@@ -19,6 +19,6 @@ export default class App extends React.Component {
     if (!this.state.isReady) {
       return <Expo.AppLoading />;
     }
-    return <MyApp />;
+    return <MyApp />
   }
 }

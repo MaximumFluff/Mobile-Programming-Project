@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, TextInput, StyleSheet, Alert } from "react-native";
+import { ScrollView, TextInput, StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -20,7 +20,8 @@ import {
   Drawer,
   Grid,
   Row,
-  Text
+  Text,
+  Toast
 } from "native-base";
 import { StackNavigator } from "react-navigation";
 import { SideBar } from "../SideBar/SideBar";
@@ -55,7 +56,8 @@ export default class InitiativeTracker extends Component {
       ac: "",
       hp: "",
       initiative: "",
-      i: 0
+      i: 0,
+      showToast: false
     };
   }
 
@@ -79,6 +81,12 @@ export default class InitiativeTracker extends Component {
       initiative: this.state.initiative
     };
     newArray = [...this.state.creatures, newPlayer];
+    Toast.show({
+        text: "Player added",
+        buttonText: "Okay",
+        duration: 3000,
+        position: "bottom"
+    })
     this.setState({
       creatures: newArray.sort((a, b) => {
         return b.initiative - a.initiative;
@@ -87,15 +95,17 @@ export default class InitiativeTracker extends Component {
   };
 
   handleDelete = (index) => {
-    // TODO: delete by index not by name!!
-    // TODO: something
-    Alert.alert("Deleting item now");
-    let nameToFilter = this.state.creatures[index].name;
-    let filteredArray = this.state.creatures.filter(
-      (item, index) => item.name != nameToFilter
-    );
+    let filteredArray = this.state.creatures;
+    filteredArray.splice(index, 1);
     this.setState({
       creatures: filteredArray
+    });
+    // Show toast when deleting
+    Toast.show({
+      text: "Item deleted",
+      buttonText: "Okay",
+      duration: 3000,
+      position: "bottom"
     });
     if (this.state.i > this.state.creatures.length - 1) {
       this.setState({
@@ -167,7 +177,7 @@ export default class InitiativeTracker extends Component {
     ));
 
     return (
-      <Container>
+        <Container>
         <Content contentContainerStyle={{ flex: 1 }} style={{ padding: 10 }}>
           <Grid>
             <Row style={{ height: 50 }}>
@@ -224,7 +234,11 @@ export default class InitiativeTracker extends Component {
               />
             </Row>
             <Row style={{ height: 50 }}>
-              <Button full info onPress={this.addPlayer} style={{ flex: 1 }}>
+              <Button
+                full
+                info
+                onPress={this.addPlayer}
+                style={{ flex: 1 }}>
                 <Text>Add player</Text>
               </Button>
             </Row>
