@@ -88,6 +88,7 @@ export default class InitiativeTracker extends Component {
 
   handleDelete = (index) => {
     // TODO: delete by index not by name!!
+    // TODO: Array splice
     Alert.alert("Deleting item now");
     let nameToFilter = this.state.creatures[index].name;
     let filteredArray = this.state.creatures.filter(
