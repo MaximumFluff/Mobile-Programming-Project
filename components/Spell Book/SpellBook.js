@@ -282,8 +282,8 @@ export default class SpellBook extends Component {
                     <Text>Simply add spells and start swiping!</Text>
                   </View>
                 ) : (
-                  this.renderDeck()
-                )}
+                    this.renderDeck()
+                  )}
               </Col>
             </Row>
             <Row size={5}>

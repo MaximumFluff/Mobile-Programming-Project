@@ -8,6 +8,7 @@ import RandomName from "../Random Name Generator/RandomName";
 import EditCreature from "../Initiative Tracker/EditCreature";
 import InitiativeTracker from "../Initiative Tracker/InitiativeTracker";
 import SpellBook from "../Spell Book/SpellBook";
+import PlotHooks from "../Plot Hooks/PlotHooks";
 
 const MyApp = DrawerNavigator(
   {
@@ -28,6 +29,9 @@ const MyApp = DrawerNavigator(
     },
     "Spell Book": {
       screen: SpellBook
+    },
+    "Plot Hooks": {
+      screen: PlotHooks
     }
   },
   {

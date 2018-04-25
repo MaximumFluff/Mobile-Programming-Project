@@ -9,15 +9,14 @@ import {
   Body,
   Thumbnail
 } from "native-base";
-// import DiceRoller from "../Dice Roller/DiceRoller";
-// import RandomName from "../Random Name Generator/RandomName";
 import { DrawerNavigator } from "react-navigation";
 const routes = [
   "Home",
   "Dice Roller",
   "Random Name Generator",
   "Initiative Tracker",
-  "Spell Book"
+  "Spell Book",
+  "Plot Hooks"
 ];
 
 export default class SideBar extends React.Component {
