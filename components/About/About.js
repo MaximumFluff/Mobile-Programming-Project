@@ -13,10 +13,34 @@ import {
   Card,
   CardItem,
   Text,
+  Toast
 } from "native-base";
 import { Asset, AppLoading } from "expo";
 
 export default class About extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      randomMessage: [
+        "Rawr!",
+        "Get out of my dungeon!",
+        "Bottom Text",
+        "Gimme gold senpai!"
+      ],
+      showToast: false
+    };
+  }
+
+  showToast = () => {
+    Toast.show({
+      text: this.state.randomMessage[
+        Math.floor(Math.random() * this.state.randomMessage.length)],
+      buttonText: "Aah!",
+      duration: 3000,
+      position: "bottom"
+    });
+  };
+
   render() {
     return (
       <Container>
@@ -35,7 +59,9 @@ export default class About extends React.Component {
         <Content>
           <Card>
             <CardItem header>
-              <Text style={{fontSize: 30, fontWeight: "bold"}}>D&D Companion App</Text>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+                D&D Companion App
+              </Text>
             </CardItem>
             <CardItem>
               <Body>
@@ -44,15 +70,20 @@ export default class About extends React.Component {
                   part of my Mobile Programming course here at Haaga-Helia
                   University of Applied Sciences.
                 </Text>
-                <Text style={{paddingTop: 25}}>
-                  This app aims to be a useful companion app for players of Dungeons & Dragons, offering several features that would be useful in playing or running a game.</Text>
-                <Text style={{paddingTop: 25}}>
-                  This app makes extensive use of the Native Base library. it also features the React Native Autocomplete Input & React Navigation libraries
+                <Text style={{ paddingTop: 25 }}>
+                  This app aims to be a useful companion app for players of
+                  Dungeons & Dragons, offering several features that would be
+                  useful in playing or running a game.
+                </Text>
+                <Text style={{ paddingTop: 25 }}>
+                  This app makes extensive use of the Native Base library. it
+                  also features the React Native Autocomplete Input & React
+                  Navigation libraries
                 </Text>
               </Body>
             </CardItem>
-            <CardItem footer>
-              <Text>Very little to no copyright by Alex Jacobs</Text>
+            <CardItem button onPress={() => this.showToast()}>
+              <Image source={require("../../15467.png")} />
             </CardItem>
           </Card>
         </Content>
