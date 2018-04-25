@@ -1,22 +1,17 @@
 import React, { Component } from "react";
-import { ScrollView, TextInput, StyleSheet } from "react-native";
+import { ScrollView, TextInput, StyleSheet, View } from "react-native";
 import {
   Container,
   Header,
   Title,
   Content,
-  Footer,
-  FooterTab,
   Left,
   Right,
   Body,
   Icon,
   Card,
   CardItem,
-  Picker,
-  Spinner,
   Button,
-  Thumbnail,
   Drawer,
   Grid,
   Row,
@@ -74,11 +69,14 @@ export default class InitiativeTracker extends Component {
 
   addPlayer = () => {
     let newArray = [];
+    let hp = parseInt(this.state.hp);
+    let ac = parseInt(this.state.ac);
+    let initiative = parseInt(this.state.initiative);
     const newPlayer = {
       name: this.state.name,
-      hp: this.state.hp,
-      ac: this.state.ac,
-      initiative: this.state.initiative
+      hp: hp,
+      ac: ac,
+      initiative: initiative
     };
     newArray = [...this.state.creatures, newPlayer];
     Toast.show({
@@ -86,7 +84,7 @@ export default class InitiativeTracker extends Component {
       buttonText: "Okay",
       duration: 3000,
       position: "bottom"
-    })
+    });
     this.setState({
       creatures: newArray.sort((a, b) => {
         return b.initiative - a.initiative;
@@ -240,16 +238,23 @@ export default class InitiativeTracker extends Component {
               />
             </Row>
             <Row style={{ height: 50 }}>
-              <Button
-                full
-                info
-                onPress={this.addPlayer}
-                style={{ flex: 1 }}>
+              <Button full info onPress={this.addPlayer} style={{ flex: 1 }}>
                 <Text>Add player</Text>
               </Button>
             </Row>
             <Row style={{ height: 480 }}>
-              <ScrollView>{this.state.creatures.length < 1 ? <Text>Tap the arrow to edit, hold to delete</Text> : rows}</ScrollView>
+              <ScrollView style={{ flex: 1 }}>
+                {this.state.creatures.length < 1 ? (
+                  <View style={styles.container}>
+                    <Text>
+                      To modify list items, tap the arrow to edit, hold to
+                      delete
+                    </Text>
+                  </View>
+                ) : (
+                  rows
+                )}
+              </ScrollView>
             </Row>
             <Row style={{ height: 70 }}>
               <Button
@@ -275,7 +280,6 @@ export default class InitiativeTracker extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
   }
