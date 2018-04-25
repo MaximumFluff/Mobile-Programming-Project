@@ -55,7 +55,7 @@ export default class DiceRoller extends React.Component {
       });
     }
   };
-  
+
   render() {
     return (
       <Container>
@@ -63,7 +63,7 @@ export default class DiceRoller extends React.Component {
           <Left>
             <Button
               transparent
-              onPress={() => this.props.navigation.navigate("Home")}>
+              onPress={() => this.props.navigation.navigate("About")}>
               <Icon name="arrow-back" />
             </Button>
           </Left>

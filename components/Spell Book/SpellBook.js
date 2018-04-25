@@ -5,7 +5,7 @@ import {
   ScrollView,
   View,
   AsyncStorage,
-  StyleSheet,
+  StyleSheet
 } from "react-native";
 import {
   Container,

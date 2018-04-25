@@ -27,7 +27,7 @@ export default class InitiativeTracker extends Component {
     header: (
       <Header style={{ paddingTop: 30, paddingBottom: 20, height: 73 }}>
         <Left>
-          <Button transparent onPress={() => navigation.navigate("Home")}>
+          <Button transparent onPress={() => navigation.navigate("About")}>
             <Icon name="arrow-back" />
           </Button>
         </Left>

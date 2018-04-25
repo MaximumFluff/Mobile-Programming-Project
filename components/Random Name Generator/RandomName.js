@@ -106,7 +106,11 @@ export default class RandomName extends React.Component {
     let lastIndex = Math.floor(Math.random() * 19);
     // console.warn(firstIndex, secondIndex, lastIndex);
     this.setState({
-      randomName: `${this.state.firstSection[firstIndex]}${this.state.firstSection[firstIndex] === "" ? this.state.secondSection[secondIndex].charAt(0).toUpperCase() : this.state.secondSection[secondIndex]}${this.state.lastSection[lastIndex]}`
+      randomName: `${this.state.firstSection[firstIndex]}${
+        this.state.firstSection[firstIndex] === ""
+          ? this.state.secondSection[secondIndex].charAt(0).toUpperCase()
+          : this.state.secondSection[secondIndex]
+      }${this.state.lastSection[lastIndex]}`
     });
   };
 
@@ -117,7 +121,7 @@ export default class RandomName extends React.Component {
           <Left>
             <Button
               transparent
-              onPress={() => this.props.navigation.navigate("Home")}>
+              onPress={() => this.props.navigation.navigate("About")}>
               <Icon name="arrow-back" />
             </Button>
           </Left>
@@ -132,7 +136,7 @@ export default class RandomName extends React.Component {
             </Button>
           </Right>
         </Header>
-        <Content contentContainerStyle={{ flex: 1 }} style={{ padding: 10}}>
+        <Content contentContainerStyle={{ flex: 1 }} style={{ padding: 10 }}>
           <Grid>
             <Row size={75}>
               <Card>

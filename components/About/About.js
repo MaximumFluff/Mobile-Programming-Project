@@ -36,7 +36,8 @@ export default class About extends React.Component {
   showToast = () => {
     Toast.show({
       text: this.state.randomMessage[
-        Math.floor(Math.random() * this.state.randomMessage.length)],
+        Math.floor(Math.random() * this.state.randomMessage.length)
+      ],
       buttonText: "Aah!",
       duration: 3000,
       position: "bottom"

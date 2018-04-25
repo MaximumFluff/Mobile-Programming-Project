@@ -23,8 +23,7 @@ const routes = [
 export default class SideBar extends React.Component {
   render() {
     return (
-      <Content
-        style={{ backgroundColor: "#ffffff", paddingTop: 50 }}>
+      <Content style={{ backgroundColor: "#ffffff", paddingTop: 50 }}>
         <List
           dataArray={routes}
           contentContainerStyle={{ marginTop: 120 }}
