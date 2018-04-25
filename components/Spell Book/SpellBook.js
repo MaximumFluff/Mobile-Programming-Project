@@ -1,6 +1,12 @@
 import Autocomplete from "react-native-autocomplete-input";
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, View, AsyncStorage } from "react-native";
+import {
+  TouchableOpacity,
+  ScrollView,
+  View,
+  AsyncStorage,
+  StyleSheet,
+} from "react-native";
 import {
   Container,
   Content,
@@ -112,7 +118,6 @@ export default class SpellBook extends Component {
           spells: JSON.parse(savedSpells),
           isLoading: false
         });
-        //console.warn("Data succesfully loaded!")
       } else {
         console.warn("No data saved yet");
         this.setState({
@@ -144,7 +149,7 @@ export default class SpellBook extends Component {
       buttonText: "Okay",
       duration: 3000,
       position: "bottom"
-    })
+    });
   };
 
   renderDeck = () => {
@@ -253,7 +258,8 @@ export default class SpellBook extends Component {
                   marginTop: 25,
                   marginBottom: 0,
                   paddingBottom: 0,
-                  fontSize: 20
+                  fontSize: 20,
+                  borderColor: "transparent"
                 }}
                 data={spells}
                 defaultValue={this.state.query}
@@ -270,7 +276,15 @@ export default class SpellBook extends Component {
               />
             </Row>
             <Row size={60}>
-              <Col>{this.renderDeck()}</Col>
+              <Col>
+                {this.state.spells.length < 1 ? (
+                  <View style={styles.container}>
+                    <Text>Simply add spells and start swiping!</Text>
+                  </View>
+                ) : (
+                  this.renderDeck()
+                )}
+              </Col>
             </Row>
             <Row size={5}>
               <Col>
@@ -294,3 +308,12 @@ export default class SpellBook extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});

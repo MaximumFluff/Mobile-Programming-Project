@@ -192,7 +192,8 @@ export default class InitiativeTracker extends Component {
                   borderColor: "black",
                   borderWidth: 1,
                   width: 100,
-                  flex: 1
+                  flex: 1,
+                  borderColor: "transparent"
                 }}
               />
               <TextInput
@@ -205,7 +206,8 @@ export default class InitiativeTracker extends Component {
                   borderColor: "black",
                   borderWidth: 1,
                   width: 100,
-                  flex: 1
+                  flex: 1,
+                  borderColor: "transparent"
                 }}
               />
               <TextInput
@@ -218,7 +220,8 @@ export default class InitiativeTracker extends Component {
                   borderColor: "black",
                   borderWidth: 1,
                   width: 100,
-                  flex: 1
+                  flex: 1,
+                  borderColor: "transparent"
                 }}
               />
               <TextInput
@@ -231,7 +234,8 @@ export default class InitiativeTracker extends Component {
                   borderColor: "black",
                   borderWidth: 1,
                   width: 100,
-                  flex: 1
+                  flex: 1,
+                  borderColor: "transparent"
                 }}
               />
             </Row>
