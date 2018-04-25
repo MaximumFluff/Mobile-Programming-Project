@@ -235,7 +235,7 @@ export default class SpellBook extends Component {
           <Left>
             <Button
               transparent
-              onPress={() => this.props.navigation.navigate("Home")}>
+              onPress={() => this.props.navigation.navigate("About")}>
               <Icon name="arrow-back" />
             </Button>
           </Left>
