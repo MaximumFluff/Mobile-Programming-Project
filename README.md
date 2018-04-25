@@ -29,3 +29,7 @@ The app aims to be a useful companion app for players of Dungeons & Dragons, off
 * `npm install`
 * `npm run` or `npm run android`/`npm run ios`
 
+## License
+
+no license lol
+

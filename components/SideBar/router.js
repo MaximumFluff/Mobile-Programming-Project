@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Root } from "native-base";
 import { DrawerNavigator, StackNavigator } from "react-navigation";
-import Home from "../Home/Home";
+import About from "../About/About";
 import DiceRoller from "../Dice Roller/DiceRoller";
 import SideBar from "./SideBar";
 import RandomName from "../Random Name Generator/RandomName";
@@ -11,8 +11,8 @@ import SpellBook from '../Spell Book/SpellBook';
 
 const MyApp = DrawerNavigator(
   {
-    Home: {
-      screen: Home
+    About: {
+      screen: About
     },
     "Dice Roller": {
       screen: DiceRoller
@@ -31,12 +31,10 @@ const MyApp = DrawerNavigator(
     }
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "About",
     contentComponent: (props) => <SideBar {...props} />
   }
 );
-
-//export default MyApp;
 
 export default () => 
     <Root>
