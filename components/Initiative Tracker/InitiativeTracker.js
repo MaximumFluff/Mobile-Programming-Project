@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, TextInput, StyleSheet, View } from "react-native";
+import { ScrollView, TextInput, StyleSheet, View, AsyncStorage } from "react-native";
 import {
   Container,
   Header,
@@ -16,7 +16,8 @@ import {
   Grid,
   Row,
   Text,
-  Toast
+  Toast,
+  Spinner
 } from "native-base";
 import { StackNavigator } from "react-navigation";
 import { SideBar } from "../SideBar/SideBar";
@@ -52,11 +53,13 @@ export default class InitiativeTracker extends Component {
       hp: "",
       initiative: "",
       i: 0,
-      showToast: false
+      showToast: false,
+      isLoading: true
     };
   }
 
   componentDidMount() {
+    this.loadData();
     const { params } = this.props.navigation.state;
     if (params) {
       this.setState({
@@ -66,6 +69,41 @@ export default class InitiativeTracker extends Component {
       });
     }
   }
+
+  loadData = async () => {
+    try {
+      let savedCreatures = await AsyncStorage.getItem("creatures");
+      if (savedCreatures != null) {
+        this.setState({
+          creatures: JSON.parse(savedCreatures),
+          isLoading: false
+        });
+      } else {
+        console.warn("No data saved yet");
+        this.setState({
+          creatures: [],
+          isLoading: false
+        });
+      }
+    } catch (err) {
+      console.warn("Error", err);
+    }
+  };
+
+  saveData = async () => {
+    try {
+      let currentCreatures = JSON.stringify(this.state.creatures);
+      await AsyncStorage.setItem("creatures", currentCreatures);
+      Toast.show({
+        text: "Data saved!",
+        buttonText: "Okay",
+        duration: 3000,
+        position: "bottom"
+      });
+    } catch (err) {
+      console.warn(err);
+    }
+  };
 
   addPlayer = () => {
     let newArray = [];
@@ -175,6 +213,18 @@ export default class InitiativeTracker extends Component {
         </CardItem>
       </Card>
     ));
+    if (this.state.isLoading) {
+      return (
+        <Content
+          contentContainerStyle={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center"
+          }}>
+          <Spinner color="blue" />
+        </Content>
+      )
+    }
 
     return (
       <Container>
@@ -214,7 +264,7 @@ export default class InitiativeTracker extends Component {
                 <Text>Add player</Text>
               </Button>
             </Row>
-            <Row style={{ height: 480 }}>
+            <Row style={{ height: 400 }}>
               <ScrollView style={{ flex: 1 }}>
                 {this.state.creatures.length < 1 ? (
                   <View style={styles.container}>
@@ -240,6 +290,14 @@ export default class InitiativeTracker extends Component {
                 onPress={this.incrementor}
                 style={{ flex: 1, marginLeft: 10 }}>
                 <Text>Next</Text>
+              </Button>
+            </Row>
+            <Row size={50}>
+              <Button
+                full
+                onPress={this.saveData}
+                style={{ flex: 1 }}>
+                <Text>Save</Text>
               </Button>
             </Row>
           </Grid>

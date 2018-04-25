@@ -44,14 +44,16 @@ export default class DiceRoller extends React.Component {
         text: "A natural 20! Critical hit!",
         buttonText: "Okay",
         duration: 3000,
-        position: "bottom"
+        position: "bottom",
+        type: "success"
       });
     } else if (randomRoll === 1 && currentDiceValue == 20) {
       Toast.show({
         text: "Critical fail! not looking good!",
         buttonText: "Okay",
         duration: 3000,
-        position: "bottom"
+        position: "bottom",
+        type: "danger"
       });
     }
   };
