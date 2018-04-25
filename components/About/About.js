@@ -24,8 +24,10 @@ export default class About extends React.Component {
       randomMessage: [
         "Rawr!",
         "Get out of my dungeon!",
-        "Bottom Text",
-        "Gimme gold senpai!"
+        "Don't touch me!",
+        "Gimme gold senpai!",
+        "My other dungeon is the tomb of horrors",
+        "Nice inventory, shame if something happened to it"
       ],
       showToast: false
     };
