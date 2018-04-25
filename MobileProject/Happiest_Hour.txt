@@ -1,3 +1,0 @@
--Mobile app for tracking happy hours in bars across Helsinki, eventually all of Finland
--Main problem: need a system for tracking and updating happy hours, as they are prone to change
--Probable solution: Develop database that can be updated by bars, allowing us to use the API to render changes to map
