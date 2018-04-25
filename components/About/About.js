@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Alert, Image, Dimensions } from "react-native";
+import { StyleSheet, Alert, Image } from "react-native";
 import {
   Container,
   Button,
@@ -25,9 +25,15 @@ export default class About extends React.Component {
         "Rawr!",
         "Get out of my dungeon!",
         "Don't touch me!",
-        "Gimme gold senpai!",
+        "Send me bitcoin and I'll unlock the secret features! ;)",
         "My other dungeon is the tomb of horrors",
-        "Nice inventory, shame if something happened to it"
+        "Nice inventory, shame if something happened to it",
+        "Waterdeep is so lovely this time of year",
+        "I just cursed your dice lol",
+        "Have you seen my pet mimic?",
+        "My hit die is a d100",
+        "I bet you're a widow main!",
+        "Stadin kingit IFK!"
       ],
       showToast: false
     };
@@ -94,6 +100,3 @@ export default class About extends React.Component {
     );
   }
 }
-
-const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height;

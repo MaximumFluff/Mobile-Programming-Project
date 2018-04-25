@@ -185,56 +185,28 @@ export default class InitiativeTracker extends Component {
                 onChangeText={(name) => this.setState({ name })}
                 value={this.state.name}
                 placeholder=" Name"
-                style={{
-                  height: 40,
-                  borderColor: "black",
-                  borderWidth: 1,
-                  width: 100,
-                  flex: 1,
-                  borderColor: "transparent"
-                }}
+                style={styles.input}
               />
               <TextInput
                 onChangeText={(hp) => this.setState({ hp })}
                 value={String(this.state.hp)}
                 placeholder=" HP"
                 keyboardType="numeric"
-                style={{
-                  height: 40,
-                  borderColor: "black",
-                  borderWidth: 1,
-                  width: 100,
-                  flex: 1,
-                  borderColor: "transparent"
-                }}
+                style={styles.input}
               />
               <TextInput
                 onChangeText={(ac) => this.setState({ ac })}
                 value={String(this.state.ac)}
                 placeholder=" AC"
                 keyboardType="numeric"
-                style={{
-                  height: 40,
-                  borderColor: "black",
-                  borderWidth: 1,
-                  width: 100,
-                  flex: 1,
-                  borderColor: "transparent"
-                }}
+                style={styles.input}
               />
               <TextInput
                 onChangeText={(initiative) => this.setState({ initiative })}
                 value={String(this.state.initiative)}
                 placeholder=" Initiative"
                 keyboardType="numeric"
-                style={{
-                  height: 40,
-                  borderColor: "black",
-                  borderWidth: 1,
-                  width: 100,
-                  flex: 1,
-                  borderColor: "transparent"
-                }}
+                style={styles.input}
               />
             </Row>
             <Row style={{ height: 50 }}>
@@ -252,8 +224,8 @@ export default class InitiativeTracker extends Component {
                     </Text>
                   </View>
                 ) : (
-                  rows
-                )}
+                    rows
+                  )}
               </ScrollView>
             </Row>
             <Row style={{ height: 70 }}>
@@ -282,6 +254,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
+  },
+  input: {
+    height: 40,
+    borderColor: "black",
+    borderWidth: 1,
+    width: 100,
+    flex: 1,
+    borderColor: "transparent"
   }
 });
 
