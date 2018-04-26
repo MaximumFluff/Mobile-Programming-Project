@@ -91,7 +91,13 @@ export default class SpellBook extends Component {
         });
       })
       .catch((err) => {
-        console.warn("Error", err);
+        Toast.show({
+          text: `Oops! an error was thrown! perhaps the spell you searched for does not exist in the database, or you left the field empty? Error code: ${err}`,
+          buttonText: "Okay",
+          duration: 3000,
+          position: "top",
+          type: "warning"
+        });
       });
   };
 
@@ -288,7 +294,7 @@ export default class SpellBook extends Component {
             </Row>
             <Row size={5}>
               <Col>
-                <Button full info onPress={this.saveData} style={{ flex: 1 }}>
+                <Button full info onPress={this.saveData} style={{ flex: 1, marginRight: 5, marginLeft: 5, marginBottom: 5 }}>
                   <Text>Save to memory</Text>
                 </Button>
               </Col>
@@ -297,7 +303,7 @@ export default class SpellBook extends Component {
                   full
                   info
                   onPress={() => this.getSpellInfo(this.state.query)}
-                  style={{ flex: 1 }}>
+                  style={{ flex: 1, marginRight: 5, marginLeft: 5, marginBottom: 5 }}>
                   <Text>Add</Text>
                 </Button>
               </Col>

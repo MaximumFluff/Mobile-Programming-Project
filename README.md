@@ -1,6 +1,6 @@
 # D&D Companion App
 
-This project was developed by myself over the course of two months for my Mobile Programming course at Haaga-Helia, Business Information Technology program, 4th semester
+This project was developed by myself from April 7th to May 2nd for my Mobile Programming course at Haaga-Helia, Business Information Technology program, 4th semester
 
 ## Dependencies/Tools/Libraries
 

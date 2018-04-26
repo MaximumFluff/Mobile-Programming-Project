@@ -33,7 +33,11 @@ export default class About extends React.Component {
         "Have you seen my pet mimic?",
         "My hit die is a d100",
         "I bet you're a widow main!",
-        "Stadin kingit IFK!"
+        "Stadin kingit IFK!",
+        "I ain't scared of no cleric!",
+        "Hello there!",
+        "I am the senate!",
+        "I live to wipe your party!"
       ],
       showToast: false
     };
@@ -44,7 +48,7 @@ export default class About extends React.Component {
       text: this.state.randomMessage[
         Math.floor(Math.random() * this.state.randomMessage.length)
       ],
-      buttonText: "Aah!",
+      buttonText: ":D",
       duration: 3000,
       position: "bottom"
     });
