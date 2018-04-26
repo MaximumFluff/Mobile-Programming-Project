@@ -95,7 +95,7 @@ export default class SpellBook extends Component {
           text: `Oops! an error was thrown! perhaps the spell you searched for does not exist in the database, or you left the field empty? Error code: ${err}`,
           buttonText: "Okay",
           duration: 3000,
-          position: "top",
+          position: "bottom",
           type: "warning"
         });
       });
