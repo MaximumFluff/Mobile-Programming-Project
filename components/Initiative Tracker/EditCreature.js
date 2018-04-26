@@ -29,9 +29,9 @@ export default class EditCreature extends Component {
     super(props);
     this.state = {
       name: "",
-      hp: 0,
-      ac: 0,
-      initiative: 0,
+      hp: "",
+      ac: "",
+      initiative: "",
       creatures: []
     };
   }
@@ -40,9 +40,9 @@ export default class EditCreature extends Component {
     const { params } = this.props.navigation.state;
     this.setState({
       name: params.creatures[params.key].name,
-      hp: params.creatures[params.key].hp,
-      ac: params.creatures[params.key].ac,
-      initiative: params.creatures[params.key].initiative,
+      hp: String(params.creatures[params.key].hp),
+      ac: String(params.creatures[params.key].ac),
+      initiative: String(params.creatures[params.key].initiative),
       creatures: params.creatures
     });
   }

@@ -1,5 +1,11 @@
 {
   "expo": {
-    "sdkVersion": "26.0.0"
+    "name": "D&D App",
+    "icon": "./d20icon.png",
+    "version": "1.0.0",
+    "sdkVersion": "26.0.0",
+    "android": {
+      "package": "com.jacobs.dnd"
+    }
   }
 }

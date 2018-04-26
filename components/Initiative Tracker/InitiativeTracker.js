@@ -80,7 +80,6 @@ export default class InitiativeTracker extends Component {
         });
       } else {
         this.setState({
-          creatures: [],
           isLoading: false
         });
       }
