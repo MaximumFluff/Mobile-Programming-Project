@@ -76,7 +76,7 @@ D&D Companion
 
 ### For Android users
 
-this .APK file can be installed onto your device (note, you will need to enable externally installing apps)
+APK file for Android users can be found under "releases"
 
 ### For iOS users
 
