@@ -12,7 +12,7 @@ This project utilizes the aforementioned tools and libraries
 * `react-native-autocomplete-input` for autocompleting text field in the Spell Book
 * `react-native-collapsible` for collapsible text for the Plot Hook component
 * `AsyncStorage` from `react-native` for storing arrays
-* `D&D 5e API` to search for spell information: check it out here [http://www.dnd5eapi.co/]
+* `D&D 5e API` to search for spell information: check it out here -> http://www.dnd5eapi.co/
 
 ## Description
 
