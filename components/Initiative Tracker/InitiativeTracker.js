@@ -79,14 +79,19 @@ export default class InitiativeTracker extends Component {
           isLoading: false
         });
       } else {
-        console.warn("No data saved yet");
         this.setState({
           creatures: [],
           isLoading: false
         });
       }
     } catch (err) {
-      console.warn("Error", err);
+      Toast.show({
+        text: `Something seems to have gone wrong during loading: ${err}`,
+        buttonText: "Okay",
+        duration: 3000,
+        position: "bottom",
+        type: "warning"
+      });
     }
   };
 
@@ -101,7 +106,13 @@ export default class InitiativeTracker extends Component {
         position: "bottom"
       });
     } catch (err) {
-      console.warn(err);
+      Toast.show({
+        text: `Something went wrong with saving the data: ${err}`,
+        buttonText: "Okay",
+        duration: 3000,
+        position: "bottom",
+        type: "warning"
+      });
     }
   };
 

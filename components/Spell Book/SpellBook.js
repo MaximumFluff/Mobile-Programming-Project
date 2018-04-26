@@ -125,14 +125,19 @@ export default class SpellBook extends Component {
           isLoading: false
         });
       } else {
-        console.warn("No data saved yet");
         this.setState({
           spells: [],
           isLoading: false
         });
       }
     } catch (err) {
-      console.warn("Error", err);
+      Toast.show({
+        text: `Oops! an error was thrown! Something went wrong with loading data, Error code: ${err}`,
+        buttonText: "Okay",
+        duration: 3000,
+        position: "bottom",
+        type: "warning"
+      });
     }
   };
 
