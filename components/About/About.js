@@ -37,7 +37,10 @@ export default class About extends React.Component {
         "I ain't scared of no cleric!",
         "Hello there!",
         "I am the senate!",
-        "I live to wipe your party!"
+        "I live to wipe your party!",
+        "This is where the fun begins!",
+        "I rate this project a 5/5",
+        "Imma bout to slam dunk on some paladins"
       ],
       showToast: false
     };
@@ -91,7 +94,7 @@ export default class About extends React.Component {
                 <Text style={{ paddingTop: 25 }}>
                   This app makes extensive use of the Native Base library. it
                   also features the React Native Autocomplete Input & React
-                  Navigation libraries
+                  Navigation libraries, among others.
                 </Text>
               </Body>
             </CardItem>

@@ -311,7 +311,7 @@ export default class InitiativeTracker extends Component {
               </Button>
             </Row>
             <Row size={10}>
-              <Button full onPress={this.saveData} style={{ flex: 1 }}>
+              <Button full onPress={this.saveData} style={{ flex: 1, paddingTop: 5 }}>
                 <Text>Save</Text>
               </Button>
             </Row>
