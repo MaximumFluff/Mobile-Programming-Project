@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { ScrollView, TextInput, StyleSheet, View, AsyncStorage } from "react-native";
+import {
+  ScrollView,
+  TextInput,
+  StyleSheet,
+  View,
+  AsyncStorage
+} from "react-native";
 import {
   Container,
   Header,
@@ -59,14 +65,16 @@ export default class InitiativeTracker extends Component {
   }
 
   componentDidMount() {
-    this.loadData();
     const { params } = this.props.navigation.state;
     if (params) {
       this.setState({
         creatures: params.creatures.sort((a, b) => {
-          return b.initiative - a.initiative;
-        })
+          return b.initiative - a.initiative
+        }),
+        isLoading: false
       });
+    } else {
+      this.loadData();
     }
   }
 
@@ -233,7 +241,7 @@ export default class InitiativeTracker extends Component {
           }}>
           <Spinner color="blue" />
         </Content>
-      )
+      );
     }
 
     return (
@@ -284,8 +292,8 @@ export default class InitiativeTracker extends Component {
                     </Text>
                   </View>
                 ) : (
-                    rows
-                  )}
+                  rows
+                )}
               </ScrollView>
             </Row>
             <Row style={{ height: 70 }}>
@@ -303,10 +311,7 @@ export default class InitiativeTracker extends Component {
               </Button>
             </Row>
             <Row size={50}>
-              <Button
-                full
-                onPress={this.saveData}
-                style={{ flex: 1 }}>
+              <Button full onPress={this.saveData} style={{ flex: 1 }}>
                 <Text>Save</Text>
               </Button>
             </Row>
