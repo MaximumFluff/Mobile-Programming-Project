@@ -296,7 +296,7 @@ export default class InitiativeTracker extends Component {
                 )}
               </ScrollView>
             </Row>
-            <Row style={{ height: 70 }}>
+            <Row style={{ height: 30 }}>
               <Button
                 full
                 onPress={this.decrementor}
@@ -310,8 +310,8 @@ export default class InitiativeTracker extends Component {
                 <Text>Next</Text>
               </Button>
             </Row>
-            <Row size={50}>
-              <Button full onPress={this.saveData} style={{ flex: 1 }}>
+            <Row>
+              <Button full onPress={this.saveData} style={{ flex: 1, marginTop: 20 }}>
                 <Text>Save</Text>
               </Button>
             </Row>
