@@ -78,6 +78,7 @@ export default class PlotHooks extends Component {
                   <Body>
                     <Accordion
                       style={{ flex: 1 }}
+                      underlayColor={"rgba(0,0,0,0)"}
                       sections={Hooks}
                       renderHeader={this._renderHeader}
                       renderContent={this._renderContent}
