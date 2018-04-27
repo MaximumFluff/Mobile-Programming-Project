@@ -248,7 +248,7 @@ export default class InitiativeTracker extends Component {
       <Container>
         <Content contentContainerStyle={{ flex: 1 }} style={{ padding: 10 }}>
           <Grid>
-            <Row style={{ height: 50 }}>
+            <Row size={10}>
               <TextInput
                 onChangeText={(name) => this.setState({ name })}
                 value={this.state.name}
@@ -277,12 +277,12 @@ export default class InitiativeTracker extends Component {
                 style={styles.input}
               />
             </Row>
-            <Row style={{ height: 50 }}>
+            <Row size={10}>
               <Button full info onPress={this.addPlayer} style={{ flex: 1 }}>
                 <Text>Add player</Text>
               </Button>
             </Row>
-            <Row style={{ height: 400 }}>
+            <Row size={60}>
               <ScrollView style={{ flex: 1 }}>
                 {this.state.creatures.length < 1 ? (
                   <View style={styles.container}>
@@ -296,7 +296,7 @@ export default class InitiativeTracker extends Component {
                 )}
               </ScrollView>
             </Row>
-            <Row style={{ height: 30 }}>
+            <Row size={10}>
               <Button
                 full
                 onPress={this.decrementor}
@@ -310,8 +310,8 @@ export default class InitiativeTracker extends Component {
                 <Text>Next</Text>
               </Button>
             </Row>
-            <Row>
-              <Button full onPress={this.saveData} style={{ flex: 1, marginTop: 20 }}>
+            <Row size={10}>
+              <Button full onPress={this.saveData} style={{ flex: 1 }}>
                 <Text>Save</Text>
               </Button>
             </Row>
