@@ -11,7 +11,7 @@ import {
 } from "native-base";
 import { DrawerNavigator } from "react-navigation";
 const routes = [
-  "Home",
+  "About",
   "Dice Roller",
   "Random Name Generator",
   "Initiative Tracker",
