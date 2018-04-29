@@ -15,10 +15,7 @@ import {
   Body,
   Title,
   Card,
-  CardItem,
-  DeckSwiper,
-  Spinner,
-  Toast
+  CardItem,  
 } from "native-base";
 import Accordion from 'react-native-collapsible/Accordion';
 import { SideBar } from "../SideBar/SideBar";

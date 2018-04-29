@@ -292,8 +292,8 @@ export default class InitiativeTracker extends Component {
                     </Text>
                   </View>
                 ) : (
-                  rows
-                )}
+                    rows
+                  )}
               </ScrollView>
             </Row>
             <Row size={10}>

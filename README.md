@@ -16,7 +16,7 @@ This project utilizes the aforementioned tools and libraries
 
 ## Description
 
-The app aims to be a useful companion app for players of Dungeons & Dragons, offering several features that would be useful in playing or running a game:
+The app aims to be a useful companion app for players of Dungeons & Dragons, offering several features that would be useful in playing or running a game as a Dungeon Master:
 
 * A random dice roller, from d4 (4-sided) to d100
 * An initiative tracker, to aid tracking turns in combat rounds

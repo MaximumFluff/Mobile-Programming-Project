@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { StyleSheet, Alert, Text, Image, Dimensions } from "react-native";
+import { StyleSheet, Alert, Text, Image } from "react-native";
 import {
   Container,
   Header,
   Title,
   Content,
-  Footer,
-  FooterTab,
   Left,
   Right,
   Body,
@@ -14,7 +12,6 @@ import {
   Card,
   CardItem,
   Picker,
-  Spinner,
   Button,
   Thumbnail,
   Drawer,
@@ -144,6 +141,3 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
-
-const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height;
