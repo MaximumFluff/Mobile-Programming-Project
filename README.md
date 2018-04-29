@@ -68,9 +68,9 @@ D&D Companion
 
 - [x] Fix bug in Initiative Tracker not loading props
 - [x] Fix navigation bug not allowing About to be selectable from DrawerNagivator
-- [ ] Fix insecure dependency
-- [ ] Make more styling changes
-- [ ] Check and clean imports
+- [x] Fix insecure dependency
+- [x] Make more styling changes
+- [x] Check and clean imports
 
 
 ## Want to try it out on your desktop?

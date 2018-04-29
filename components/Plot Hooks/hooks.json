@@ -30,5 +30,13 @@
   {
     "title": "Necromantic Screams",
     "content": "You are comissioned to assasinate a necromancer who lives in the dungeons underneath an old town. The whole complex is teeming with undead and traps are scattered throughout. Will you make it out alive?"
+  },
+  {
+    "title": "The Flesh Obeys",
+    "content": "A small town is being beset by evil sorcerers who have amassed a small army of mind controlled humanoids. You are contracted to strike at their home base several miles away from the town, and encounter a powerful cult-like leader"
+  },
+  {
+    "title": "Just One More Thing",
+    "content": "In a very unconventional case, you are tasked to escort the body of a murdered child to a distant temple so a powerful cleric can ressurect her so she can testify at trial. The killers obviously would prefer that this would not come to pass."
   }
 ]

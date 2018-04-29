@@ -43,7 +43,7 @@ export default class PlotHooks extends Component {
   _renderContent(section) {
     return (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Text style={{ fontSize: 18, paddingBottom: 20 }}>{section.content}</Text>
+        <Text style={{ fontSize: 18, paddingBottom: 20, backgroundColor: "gray" }}>{section.content}</Text>
       </View>
     );
   }
