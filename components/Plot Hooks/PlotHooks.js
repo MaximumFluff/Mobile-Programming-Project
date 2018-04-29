@@ -43,7 +43,7 @@ export default class PlotHooks extends Component {
   _renderContent(section) {
     return (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Text style={{ fontSize: 18, paddingBottom: 20, backgroundColor: "gray" }}>{section.content}</Text>
+        <Text style={{ fontSize: 18, paddingBottom: 20 }}>{section.content}</Text>
       </View>
     );
   }
@@ -72,7 +72,7 @@ export default class PlotHooks extends Component {
         </Header>
         <Content contentContainerStyle={{ flex: 1 }}>
           <Grid>
-            <Row size={300}>
+            <Row size={100}>
               <Card style={{ flex: 1, elevation: 3 }}>
                 <CardItem>
                   <Body>
@@ -98,6 +98,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    //justifyContent: "center"
   }
 });

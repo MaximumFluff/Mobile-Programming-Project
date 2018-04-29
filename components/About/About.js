@@ -32,7 +32,7 @@ export default class About extends React.Component {
         "I just cursed your dice lol",
         "Have you seen my pet mimic?",
         "My hit die is a d100",
-        "I bet you're a widow main!",
+        "I bet you're a widow main",
         "Stadin kingit IFK!",
         "I ain't scared of no cleric!",
         "Hello there!",
@@ -40,7 +40,10 @@ export default class About extends React.Component {
         "I live to wipe your party!",
         "This is where the fun begins!",
         "I rate this project a 5/5",
-        "Imma bout to slam dunk on some paladins"
+        "Imma bout to slam dunk on some paladins",
+        "Torille Tavataan!",
+        "SUOMI!",
+        ""
       ],
       showToast: false
     };
@@ -82,17 +85,17 @@ export default class About extends React.Component {
             <CardItem>
               <Body>
                 <Text>
-                  This app was developed by me over a period of one month as
+                  This app was developed by myself over a period of one month as
                   part of my Mobile Programming course here at Haaga-Helia
                   University of Applied Sciences.
                 </Text>
                 <Text style={{ paddingTop: 25 }}>
                   This app aims to be a useful companion app for players of
                   Dungeons & Dragons, offering several features that would be
-                  useful in playing or running a game.
+                  useful in playing or running a game as a Dungeon Master.
                 </Text>
                 <Text style={{ paddingTop: 25 }}>
-                  This app makes extensive use of the Native Base library. it
+                  This project makes extensive use of the Native Base library. it
                   also features the React Native Autocomplete Input & React
                   Navigation libraries, among others.
                 </Text>

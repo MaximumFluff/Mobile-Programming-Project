@@ -71,6 +71,7 @@ D&D Companion
 - [x] Fix insecure dependency
 - [x] Make more styling changes
 - [x] Check and clean imports
+- [x] Finalize README.md
 
 
 ## Want to try it out on your desktop?
