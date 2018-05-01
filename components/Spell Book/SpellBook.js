@@ -281,7 +281,7 @@ export default class SpellBook extends Component {
                   renderItem={(item) => (
                     <TouchableOpacity
                       onPress={() => this.setState({ query: item })}>
-                      <Text style={{ fontSize: 20, paddingTop: 20, marginLeft: 10, borderColor: "black", borderTopWidth: 1}}>{item}</Text>
+                      <Text style={{ fontSize: 20, paddingTop: 20, marginLeft: 10, borderColor: "black", borderTopWidth: 1 }}>{item}</Text>
                     </TouchableOpacity>
                   )}
                 />
@@ -294,7 +294,7 @@ export default class SpellBook extends Component {
                     <Text>Simply add spells and start swiping!</Text>
                   </View>
                 ) : (
-                    <View>{this.renderDeck()}</View>
+                    this.renderDeck()
                   )}
               </Col>
             </Row>

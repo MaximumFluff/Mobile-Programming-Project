@@ -161,7 +161,13 @@ export default class InitiativeTracker extends Component {
       duration: 3000,
       position: "bottom"
     });
-    if (this.state.i > this.state.creatures.length - 1) {
+    // If array is empty, reset counter
+    if (this.state.creatures.length === 0) {
+      this.setState({
+        i: 0
+      })
+    }
+    else if (this.state.i > this.state.creatures.length - 1) {
       this.setState({
         i: this.state.i - 1
       });
