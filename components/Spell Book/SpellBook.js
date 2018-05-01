@@ -264,27 +264,28 @@ export default class SpellBook extends Component {
         <Content contentContainerStyle={{ flex: 1 }}>
           <Grid>
             <Row size={20}>
-              <Autocomplete
-                style={{
-                  marginTop: 25,
-                  marginBottom: 0,
-                  paddingBottom: 0,
-                  fontSize: 20,
-                  borderColor: "transparent"
-                }}
-                data={spells}
-                defaultValue={this.state.query}
-                onChangeText={(text) => this.setState({ query: text })}
-                placeholder="Enter spell"
-                renderItem={(item) => (
-                  <ScrollView>
+              <View style={{ position: "absolute", flex: 1, top: 0, right: 0, left: 0, zIndex: 1 }}>
+                <Autocomplete
+                  style={{
+                    marginTop: 25,
+                    marginBottom: 0,
+                    paddingBottom: 0,
+                    fontSize: 20,
+                    borderColor: "transparent"
+                  }}
+                  listStyle={{maxHeight: 400}}
+                  data={spells}
+                  defaultValue={this.state.query}
+                  onChangeText={(text) => this.setState({ query: text })}
+                  placeholder="Enter spell"
+                  renderItem={(item) => (
                     <TouchableOpacity
                       onPress={() => this.setState({ query: item })}>
                       <Text style={{ fontSize: 20 }}>{item}</Text>
                     </TouchableOpacity>
-                  </ScrollView>
-                )}
-              />
+                  )}
+                />
+              </View>
             </Row>
             <Row size={60}>
               <Col>
@@ -293,7 +294,7 @@ export default class SpellBook extends Component {
                     <Text>Simply add spells and start swiping!</Text>
                   </View>
                 ) : (
-                    this.renderDeck()
+                    <View>{this.renderDeck()}</View>
                   )}
               </Col>
             </Row>
@@ -328,3 +329,5 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+
+/* Autocomplete scrolling fix solution from here: https://github.com/l-urence/react-native-autocomplete-input/issues/57 */

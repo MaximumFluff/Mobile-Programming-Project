@@ -15,7 +15,9 @@ import {
   Button,
   Thumbnail,
   Drawer,
-  Toast
+  Toast,
+  Grid,
+  Row
 } from "native-base";
 import { Asset, AppLoading } from "expo";
 import { SideBar } from "../SideBar/SideBar";
@@ -78,55 +80,59 @@ export default class DiceRoller extends React.Component {
           </Right>
         </Header>
         <Content>
-          <Card>
-            <CardItem>
-              <Left>
-                <Thumbnail source={require("../../d20icon.png")} />
-                <Body>
-                  <Text note>May RNGesus bless your rolls</Text>
-                </Body>
-              </Left>
-            </CardItem>
-            <CardItem cardBody>
-              <Image
-                source={require("../../dice.jpg")}
-                style={{ height: 200, width: null, flex: 1 }}
-              />
-            </CardItem>
-            <CardItem>
-              <Picker
-                style={{ width: 200, flex: 1 }}
-                selectedValue={this.state.diceValue}
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ diceValue: itemValue })
-                }>
-                <Picker.Item label="d100" value="100" />
-                <Picker.Item label="d20" value="20" />
-                <Picker.Item label="d12" value="12" />
-                <Picker.Item label="d10" value="10" />
-                <Picker.Item label="d8" value="8" />
-                <Picker.Item label="d6" value="6" />
-                <Picker.Item label="d4" value="4" />
-              </Picker>
-            </CardItem>
-            <CardItem>
-              <Body style={styles.container}>
-                <Text style={{ fontSize: 30 }}>
-                  {this.state.generatedValue}
-                </Text>
-              </Body>
-            </CardItem>
-            <CardItem>
-              <Button
-                style={{ flex: 1 }}
-                full
-                info
-                onPress={this.calculateDiceRoll}
-                title="Something">
-                <Title>Roll!</Title>
-              </Button>
-            </CardItem>
-          </Card>
+          <Grid>
+            <Row size={100} style={{paddingTop: 50}}>
+              <Card>
+                <CardItem>
+                  <Left>
+                    <Thumbnail source={require("../../d20icon.png")} />
+                    <Body>
+                      <Text note>May RNGesus bless your rolls</Text>
+                    </Body>
+                  </Left>
+                </CardItem>
+                <CardItem cardBody>
+                  <Image
+                    source={require("../../dice.jpg")}
+                    style={{ height: 200, width: null, flex: 1 }}
+                  />
+                </CardItem>
+                <CardItem>
+                  <Picker
+                    style={{ width: 200, flex: 1 }}
+                    selectedValue={this.state.diceValue}
+                    onValueChange={(itemValue, itemIndex) =>
+                      this.setState({ diceValue: itemValue })
+                    }>
+                    <Picker.Item label="d100" value="100" />
+                    <Picker.Item label="d20" value="20" />
+                    <Picker.Item label="d12" value="12" />
+                    <Picker.Item label="d10" value="10" />
+                    <Picker.Item label="d8" value="8" />
+                    <Picker.Item label="d6" value="6" />
+                    <Picker.Item label="d4" value="4" />
+                  </Picker>
+                </CardItem>
+                <CardItem>
+                  <Body style={styles.container}>
+                    <Text style={{ fontSize: 30 }}>
+                      {this.state.generatedValue}
+                    </Text>
+                  </Body>
+                </CardItem>
+                <CardItem>
+                  <Button
+                    style={{ flex: 1 }}
+                    full
+                    info
+                    onPress={this.calculateDiceRoll}
+                    title="Something">
+                    <Title>Roll!</Title>
+                  </Button>
+                </CardItem>
+              </Card>
+            </Row>
+          </Grid>
         </Content>
       </Container>
     );

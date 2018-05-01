@@ -99,6 +99,7 @@ export default class EditCreature extends Component {
                 onChangeText={(hp) => this.setState({ hp })}
                 defaultValue={this.state.hp}
                 placeholder=" HP"
+                keyboardType="numeric"
                 style={{
                   height: 40,
                   borderColor: "black",
@@ -111,6 +112,7 @@ export default class EditCreature extends Component {
                 onChangeText={(ac) => this.setState({ ac })}
                 defaultValue={this.state.ac}
                 placeholder=" AC"
+                keyboardType="numeric"
                 style={{
                   height: 40,
                   borderColor: "black",
@@ -123,6 +125,7 @@ export default class EditCreature extends Component {
                 onChangeText={(initiative) => this.setState({ initiative })}
                 defaultValue={this.state.initiative}
                 placeholder=" Initiative"
+                keyboardType="numeric"
                 style={{
                   height: 40,
                   borderColor: "black",
