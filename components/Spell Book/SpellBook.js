@@ -273,7 +273,7 @@ export default class SpellBook extends Component {
                     fontSize: 20,
                     borderColor: "transparent"
                   }}
-                  listStyle={{maxHeight: 400}}
+                  listStyle={{ maxHeight: 400 }}
                   data={spells}
                   defaultValue={this.state.query}
                   onChangeText={(text) => this.setState({ query: text })}
@@ -281,7 +281,7 @@ export default class SpellBook extends Component {
                   renderItem={(item) => (
                     <TouchableOpacity
                       onPress={() => this.setState({ query: item })}>
-                      <Text style={{ fontSize: 20 }}>{item}</Text>
+                      <Text style={{ fontSize: 20, paddingTop: 20, marginLeft: 10, borderColor: "black", borderTopWidth: 1}}>{item}</Text>
                     </TouchableOpacity>
                   )}
                 />
